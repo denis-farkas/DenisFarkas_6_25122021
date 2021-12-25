@@ -1,4 +1,4 @@
-   import {photographerFactory} from '../factories/photographer'
+   import photographerFactory from '../factories/photographer'
    
    async function getPhotographers() {
         // Penser à remplacer par les données récupérées dans le json
