@@ -1,6 +1,6 @@
-import photographerFactory from "../factories/photographer";
-
-    async function getPhotographers() {
+   import {photographerFactory} from '../factories/photographer'
+   
+   async function getPhotographers() {
         // Penser à remplacer par les données récupérées dans le json
         const photographers = [
             {
