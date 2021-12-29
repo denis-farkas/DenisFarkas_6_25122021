@@ -30,38 +30,8 @@ function photographerFactory(data) {
   return { name, picture, getUserCardDOM };
 }
 
-function headerFactory(data) {
-  const { name, portrait, city, country, tagline } = data;
-  const main = document.querySelector("main");
-  const picture = `assets/photographers/${portrait}`;
-  function getUserHeaderDOM() {
-    const header =document.createElement("div");
-    header.className="photograph-header";
-    main.appendChild(header);
-    const headerLeft = document.createElement("div");
-    headerLeft.className = "photograph-header-left";
-    const h2 = document.createElement("h2");
-    h2.textContent = name;
-    const h6 = document.createElement("h6");
-    h6.textContent = `${city}, ${country}`;
-    const p = document.createElement("p");
-    p.className ="subTitle";
-    p.textContent = tagline;
-    headerLeft.appendChild(h2);
-    headerLeft.appendChild(h6);
-    headerLeft.appendChild(p);
-    const btn = document.createElement("button");
-    btn.className = "contact-button";
-    btn.setAttribute("onclick", "displayModal()")
-    btn.textContent="Contactez-moi";
-    const img = document.createElement("img");
-    img.setAttribute("src", picture);
-    header.appendChild(headerLeft);
-    header.appendChild(btn);
-    header.appendChild(img);
-    return header;
-  }
-  return{getUserHeaderDOM};
 
-}
+
+
+
 

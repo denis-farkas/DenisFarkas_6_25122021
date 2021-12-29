@@ -25,7 +25,7 @@ h1 {
   display: none;
 }
 
-.photograph-header {
+.photograph_header {
   display: flex;
   background-color: #fafafa;
   height: 300px;
@@ -34,32 +34,32 @@ h1 {
   align-items: center;
 }
 
-.photograph-header-left {
+.photograph_header_left {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.photograph-header-left h2 {
+.photograph_header_left h2 {
   color: #d3573c;
   font-size: 3vw;
   margin-block-start: 0.83em;
   margin-block-end: 0.3em;
 }
 
-.photograph-header-left h6 {
+.photograph_header_left h6 {
   color: #901c1c;
   font-size: 1vw;
   margin-block-start: 0.5em;
   margin-block-end: 0.83em;
 }
 
-.photograph-header-left p {
+.photograph_header_left p {
   margin-block-start: 0.83em;
   margin-block-end: 0.83em;
 }
 
-.photograph-header-left .subTitle {
+.photograph_header_left .subTitle {
   color: black;
   font-size: 0.85vw;
   font-weight: 400;
@@ -78,12 +78,67 @@ h1 {
   cursor: pointer;
 }
 
-.photograph-header img {
+.photograph_header img {
   height: 200px;
   width: 200px;
   clip-path: circle();
   object-position: 50% 50%;
   object-fit: cover;
+}
+
+.portfolio_section{
+  background-color: white;
+  margin:0 100px;
+}
+
+.portfolio_header{
+  display:flex;
+  justify-content: left;
+  height: 200px;
+  margin: 0 100px;
+  align-items: center;
+}
+
+.portfolio_header menu{
+  background-color: white;
+}
+
+.describe,
+.likes{
+  color: #901c1c;
+  font-size: 1vw;
+}
+
+.portfolio_body {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.portfolio_body article img,
+.portfolio_body article video{
+  height: 305px;
+  width: 305px;
+  object-position: 50% 50%;
+  object-fit: cover;
+}
+article{
+  margin: 20px 0;
+}
+article .row{
+  display:flex;
+  justify-content: space-between;
+  align-content: center;
+  padding:15px 0;
+}
+
+article .row i{
+  padding: 0 5px;
+}
+
+.fa-heart{
+  color: #901c1c;
+  font-size: 16px;
 }
 
 .modal {
