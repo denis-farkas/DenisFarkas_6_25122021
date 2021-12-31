@@ -1,6 +1,5 @@
 function portfolioItemFactory(data) {
     const { id, title, image, video, likes} = data;
-    
     function getPortfolioCardDOM() {
       const article = document.createElement("article");
       if (image) {
@@ -33,6 +32,6 @@ function portfolioItemFactory(data) {
       like.appendChild(i);
       return article;
     }
-    return { getPortfolioCardDOM };
+    return {getPortfolioCardDOM };
     
   }

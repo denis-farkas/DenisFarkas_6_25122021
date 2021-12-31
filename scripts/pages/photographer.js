@@ -32,6 +32,13 @@ async function displayHeader(onePhotographer){
    
     }
 
+    async function displayModalContact(onePhotographer){
+        const photographerBody =document.querySelector("body");
+        const contactModel = modalContactFactory(onePhotographer);
+        const userContactModalDOM = contactModel.getModalContactDOM();
+        photographerBody.appendChild(userContactModalDOM);
+    }
+
 
 async function displayPortfolio(portfolios){
     const portfolioBody = document.querySelector(".portfolio_body");
@@ -59,11 +66,22 @@ async function init(){
     const idPhotographer = await getIdPhotographer();
     const onePhotographer = await getOnePhotographer(photographers, idPhotographer);
     const  portfolios  = await getPortfolios(photographers, idPhotographer);
-    
+    console.log(onePhotographer);
+    console.log(portfolios);
     displayHeader(onePhotographer);
-    displayPortfolio(portfolios);
-    
+    displayModalContact(onePhotographer);
+    displayPortfolio(portfolios);  
 };
 
 init();
+
+const contact = document.querySelector(".contact_modal");
+
+function displayContactModal(){
+contact.style.display = "block";
+}
+
+function closeModal(){
+contact.style.display = "none";
+}
 
