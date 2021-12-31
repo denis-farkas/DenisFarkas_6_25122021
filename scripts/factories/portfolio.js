@@ -7,6 +7,13 @@ function headerFactory(data) {
       const header =document.createElement("div");
       header.className="photograph_header";
       main.appendChild(header);
+      const contactModal =document.createElement("div");
+      contactModal.id="contact_modal";
+      main.appendChild(contactModal);
+      const modal=document.createElement("div");
+      modal.className="modal";
+      
+
       const headerLeft = document.createElement("div");
       headerLeft.className = "photograph_header_left";
       const h2 = document.createElement("h2");

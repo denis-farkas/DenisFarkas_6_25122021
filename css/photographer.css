@@ -117,8 +117,8 @@ h1 {
 
 .portfolio_body article img,
 .portfolio_body article video{
-  height: 305px;
-  width: 305px;
+  height: 430px;
+  width: 430px;
   object-position: 50% 50%;
   object-fit: cover;
 }
