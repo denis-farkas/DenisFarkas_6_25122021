@@ -32,7 +32,7 @@ async function displayHeader(onePhotographer){
    
     }
 
-    async function displayModalContact(onePhotographer){
+async function displayModalContact(onePhotographer){
         const photographerBody =document.querySelector("body");
         const contactModel = modalContactFactory(onePhotographer);
         const userContactModalDOM = contactModel.getModalContactDOM();
@@ -57,25 +57,54 @@ async function getOnePhotographer(photographers, idPhotographer){
 
 async function getPortfolios(photographers, idPhotographer){
     const portfolios = photographers.media.filter(item=>item.photographerId===idPhotographer);
-    return portfolios;
+    //Ajout d'un index pour faciliter l'affichage en slide
+    const indexedPortfolios = portfolios.map((item, index)=>({index, ...item}));
+    
+    return indexedPortfolios;
 }
 
+async function displayModalSection(){
+    const modal = document.querySelector(".lightbox_modal");
+    const modalModel = modalMediaFactory();
+    const modalSection = modalModel.getModalMediaDOM();
+    modal.appendChild(modalSection);
+}
+
+function displayLightbox() {
+    const modalSection = document.querySelector(".body_center");
+    const portfolios =  JSON.parse(localStorage.getItem( 'portfolios'));
+    portfolios.forEach((item) => {
+        const modalMediaModel = modalMediaItemFactory(item);
+        const mediaCardDOM = modalMediaModel.getMediaItemDOM();
+        modalSection.appendChild(mediaCardDOM);
+    });
+};
+
+
+
+
+
+ 
 
 async function init(){
     const photographers = await getPhotographers();
     const idPhotographer = await getIdPhotographer();
     const onePhotographer = await getOnePhotographer(photographers, idPhotographer);
+    localStorage.setItem('onePhotographer', JSON.stringify(onePhotographer));
     const  portfolios  = await getPortfolios(photographers, idPhotographer);
-    console.log(onePhotographer);
-    console.log(portfolios);
+    localStorage.setItem('portfolios', JSON.stringify(portfolios));
     displayHeader(onePhotographer);
     displayModalContact(onePhotographer);
-    displayPortfolio(portfolios);  
+    displayPortfolio(portfolios);
+    displayModalSection();
+    displayLightbox();
 };
 
 init();
 
 const contact = document.querySelector(".contact_modal");
+const lightbox = document.querySelector(".lightbox_modal");
+const photographerBody = document.querySelector(".photograph_body");
 
 function displayContactModal(){
 contact.style.display = "block";
@@ -84,4 +113,34 @@ contact.style.display = "block";
 function closeModal(){
 contact.style.display = "none";
 }
+
+function closeLightbox(){
+    lightbox.style.display ="none";
+}
+
+
+
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("slides");
+    if (n > slides.length-1) {slideIndex = 0}
+    if (n < 0) {slideIndex = slides.length-1}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex].style.display = "block";
+    lightbox.style.display="block";
+}
+    
 

@@ -1,22 +1,22 @@
 function portfolioItemFactory(data) {
-    const { id, title, image, video, likes} = data;
+    const { index, id, title, image, video, likes} = data;
     function getPortfolioCardDOM() {
       const article = document.createElement("article");
       if (image) {
         const img = document.createElement('img');
         img.setAttribute("src", `assets/media/${image}`);
-        img.setAttribute("onclick", `displayMedia(${id})`);
+        img.setAttribute("onclick", `currentSlide(${index})`);
         article.appendChild(img);
       } else if (video) {
         const vid = document.createElement('video');
         vid.setAttribute("src", `assets/media/${video}`);
         vid.setAttribute("autoplay","metadata");
-        vid.setAttribute("onclick", `displayMedia(${id})`)
+        vid.setAttribute("onclick", `currentSlide(${index})`);
         article.appendChild(vid);
       }
       const row = document.createElement('div');
       row.className="row";
-      row.setAttribute("onclick", `displayMedia(${id})`)
+      row.setAttribute("onclick", `currentSlide(${index})`)
       article.appendChild(row);
       const span = document.createElement("span");
       span.textContent = `${title}`;
@@ -32,6 +32,6 @@ function portfolioItemFactory(data) {
       like.appendChild(i);
       return article;
     }
-    return {getPortfolioCardDOM };
+    return {getPortfolioCardDOM};
     
   }
