@@ -92,12 +92,46 @@ h1 {
   display:flex;
   justify-content: left;
   height: 200px;
-  margin: 0 100px;
   align-items: center;
 }
 
-.portfolio_header menu{
-  background-color: white;
+.portfolio_section .menu{
+ display:flex;
+ margin: 0 10px;
+}
+
+.portfolio_section .menu .tri{
+ font-weight: 600;
+ margin-right: 5vh;
+ }
+
+.portfolio_section .menu ul{
+  margin-top: 7px;
+    margin-bottom: 10px;
+    list-style-type: none;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    padding-inline-start: 10px;
+    /* Added the following two properties to display border */
+    border: 2px solid #901c1c;
+    background-color: #901c1c;
+}
+
+
+.portfolio_section .menu ul li{
+  background-color: #901c1c;
+  color: white;
+  font-size: 1vw;
+  cursor:pointer;
+  padding: 1vh;
+  width: 14vh;
+  text-align: left;
+  border-bottom: 1px solid #CCC;
+  margin-right:1vh;
+}
+
+.portfolio_section .menu ul li:last-child {
+	border-bottom: 0;
 }
 
 .describe,
@@ -108,7 +142,7 @@ h1 {
 
 .portfolio_body {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 

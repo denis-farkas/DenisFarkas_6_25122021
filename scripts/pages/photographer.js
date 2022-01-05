@@ -40,9 +40,9 @@ async function displayModalContact(onePhotographer){
     }
 
 
-async function displayPortfolio(portfolios){
+async function displayPortfolio(collection){
     const portfolioBody = document.querySelector(".portfolio_body");
-    portfolios.forEach((item) =>{
+    collection.forEach((item) =>{
         const portfolioModel = portfolioItemFactory(item);
         const userPortfolioDOM = portfolioModel.getPortfolioCardDOM();
         portfolioBody.appendChild(userPortfolioDOM);
@@ -150,5 +150,62 @@ function Liked(id) {
     incrementLikes= likes + 1;
     like.textContent = incrementLikes.toString();
 }
-    
+
+//fonction menu filtre
+function sortPopular( a, b ) {
+    if(a.likes > b.likes){
+        return -1;
+    }
+    if(a.likes < b.likes){
+        return 1;
+    }
+    return 0 
+}
+
+function sortRecent( a, b ) {
+    if(a.date > b.date){
+        return -1;
+    }
+    if(a.date < b.date){
+        return 1;
+    }
+    return 0 
+}
+
+function sortTitle( a, b ) {
+    if(a.title > b.title){
+        return 1;
+    }
+    if(a.title < b.title){
+        return -1;
+    }
+    return 0 
+}
+
+function  filterPopular(){
+const portfolioBody = document.querySelector(".portfolio_body");  
+const portfolio = JSON.parse(localStorage.getItem( 'portfolios')); 
+const filter = portfolio.sort(sortPopular);
+portfolioBody.innerHTML=""
+displayPortfolio(filter);
+}  
+
+function  filterDate(){
+    const portfolioBody = document.querySelector(".portfolio_body");  
+    const portfolio = JSON.parse(localStorage.getItem( 'portfolios')); 
+    const filter = portfolio.sort(sortRecent);
+    portfolioBody.innerHTML=""
+    displayPortfolio(filter);
+}
+
+
+function  filterTitre(){
+    const portfolioBody = document.querySelector(".portfolio_body");  
+    const portfolio = JSON.parse(localStorage.getItem( 'portfolios')); 
+    const filter = portfolio.sort(sortTitle);
+    portfolioBody.innerHTML=""
+    displayPortfolio(filter);
+}
+
+
 
