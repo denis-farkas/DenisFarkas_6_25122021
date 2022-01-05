@@ -46,6 +46,26 @@ function headerFactory(data) {
       const portfolio_header_menu = document.createElement("div");
       portfolio_header_menu.className="menu";
       portfolio_header.appendChild(portfolio_header_menu);
+      const listbox =document.createElement("ul");
+      listbox.setAttribute("role", "listbox");
+      listbox.setAttribute("tabindex", "0");
+      listbox.setAttribute("aria-label", "filtres");
+      portfolio_header_menu.appendChild(listbox);
+      const filtrePopular = document.createElement("li");
+      filtrePopular.setAttribute("role", "option");
+      filtrePopular.textContent = "Popularité";
+      filtrePopular.setAttribute("onclick", "filterPopular()");
+      const filtreDate = document.createElement("li");
+      filtreDate.setAttribute("role", "option");
+      filtreDate.textContent = "Date";
+      filtreDate.setAttribute("onclick", "filterDate()");
+      const filtreTitre = document.createElement("li");
+      filtreTitre.setAttribute("role", "option");
+      filtreTitre.textContent = "Titre";
+      filtreTitre.setAttribute("onclick", "filterTitre()");
+      listbox.appendChild(filtrePopular);
+      listbox.appendChild(filtreDate);
+      listbox.appendChild(filtreTitre);
       const portfolio_body = document.createElement("div");
       portfolio_body.className="portfolio_body";
       section.appendChild(portfolio_body)

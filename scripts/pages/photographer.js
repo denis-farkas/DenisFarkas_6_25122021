@@ -119,7 +119,7 @@ function closeLightbox(){
 }
 
 
-
+//lightbox show slides
 
 // Next/previous controls
 function plusSlides(n) {
@@ -141,6 +141,14 @@ function showSlides(n) {
     }
     slides[slideIndex].style.display = "block";
     lightbox.style.display="block";
+}
+
+//likes
+function Liked(id) {
+    const like = document.getElementById(id);
+    let likes = Number(like.textContent);
+    incrementLikes= likes + 1;
+    like.textContent = incrementLikes.toString();
 }
     
 

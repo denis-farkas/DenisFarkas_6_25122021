@@ -16,20 +16,24 @@ function portfolioItemFactory(data) {
       }
       const row = document.createElement('div');
       row.className="row";
-      row.setAttribute("onclick", `currentSlide(${index})`)
       article.appendChild(row);
       const span = document.createElement("span");
       span.textContent = `${title}`;
       span.className="describe";
+      span.setAttribute("onclick", `currentSlide(${index})`);
+      row.appendChild(span);
+      const rightSide = document.createElement('div');
+      rightSide.className="right-side";
+      row.appendChild(rightSide);
       const like = document.createElement("div");
       like.className="likes";
       like.textContent = `${likes}`;
+      like.setAttribute("id", `${id}`);
       const i = document.createElement("i");
       i.className="fa fa-heart";
-      i.setAttribute("onclick", `incrementLikes(${id})`);
-      row.appendChild(span);
-      row.appendChild(like);
-      like.appendChild(i);
+      i.setAttribute("onclick", `Liked(${id})`);
+      rightSide.appendChild(like);
+      rightSide.appendChild(i);
       return article;
     }
     return {getPortfolioCardDOM};

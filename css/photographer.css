@@ -130,13 +130,19 @@ article .row{
   padding:15px 0;
 }
 
+article .row .right-side{
+  display:flex;
+  justify-content: right;
+  align-items: center;
+}
+
 article .row i{
   padding: 0 5px;
 }
 
 .fa-heart{
   color: #901c1c;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .lightbox_modal {
