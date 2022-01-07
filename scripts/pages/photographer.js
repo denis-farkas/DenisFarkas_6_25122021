@@ -151,6 +151,19 @@ function Liked(id) {
     like.textContent = incrementLikes.toString();
 }
 
+//badge Likes
+const likes = document.querySelectorAll(".likes");
+console.log(likes);
+let count=0;
+likes.forEach((item) =>{
+    const like = Number(item.textContent);
+    let count= count + like;
+})
+console.log(count);
+const Total = document.querySelector("#total");
+Total.textContent= count;
+
+
 //fonction menu filtre
 function sortPopular( a, b ) {
     if(a.likes > b.likes){

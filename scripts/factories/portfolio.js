@@ -1,8 +1,9 @@
 
 function headerFactory(data) {
-    const { name, portrait, city, country, tagline } = data;
+    const { name, portrait, city, country, tagline, price } = data;
     const main = document.querySelector("main");
     const picture = `assets/photographers/${portrait}`;
+
     function getUserHeaderDOM() {
       const header =document.createElement("div");
       header.className="photograph_header";
@@ -34,6 +35,27 @@ function headerFactory(data) {
         const body =document.createElement("div");
         body.className="photograph_body";
         main.appendChild(body);
+        const badge=document.createElement("div");
+        badge.className="badge";
+        body.appendChild(badge);
+        const badgeLeft=document.createElement("div");
+        badgeLeft.className="badge-left";
+        badge.appendChild(badgeLeft);
+        const like = document.createElement("div");
+        like.className="like";
+        like.setAttribute("id", `total`);
+        const i = document.createElement("i");
+        i.className="fa fa-heart black";
+        i.setAttribute("onclick", `Liked(total)`);
+        badgeLeft.appendChild(like);
+        badgeLeft.appendChild(i);
+        const badgeRight=document.createElement("div");
+        badgeRight.className="badge-right";
+        badge.appendChild(badgeRight);
+        const span = document.createElement("span");
+        span.className="price";
+        span.textContent = `${price}€ / jour`;
+        badgeRight.appendChild(span);
         return body;
     }
     function getPortfolioSectionDOM(){
@@ -44,16 +66,26 @@ function headerFactory(data) {
       main.appendChild(section);
       section.appendChild(portfolio_header);
       const menu = document.createElement("div");
-      menu.className="menu";
+      menu.className="listbox-area";
       const label = document.createElement("p");
       label.textContent="Trier par";
       label.className="tri";
+      label.setAttribute("id", "tri");
       menu.appendChild(label);
       portfolio_header.appendChild(menu);
+      /*const wrapper =document.createElement("button");
+      wrapper.className="wrapper-button";
+      wrapper.setAttribute("id", "button");
+      wrapper.setAttribute("aria-haspopup", "listbox");
+      wrapper.setAttribute("aria-labelledby", "tri button");
+      wrapper.textContent = "Popularité ▾";
+      menu.appendChild(wrapper);*/
       const listbox =document.createElement("ul");
       listbox.setAttribute("role", "listbox");
-      listbox.setAttribute("tabindex", "0");
-      listbox.setAttribute("aria-label", "filtres");
+      listbox.setAttribute("tabindex", "-1");
+      listbox.setAttribute("aria-labelledby", "tri");
+      listbox.setAttribute("id", "elem_list");
+      //listbox.className = "hidden";
       menu.appendChild(listbox);
       const filtrePopular = document.createElement("li");
       filtrePopular.setAttribute("role", "option");
