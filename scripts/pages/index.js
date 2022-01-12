@@ -9,9 +9,7 @@
          }
         });
     const photographers = await response.json()
-   
     return photographers;
-    
     }
 
     async function displayData(photographers) {
@@ -24,10 +22,17 @@
         });
     };
 
+
     async function init() {
         // Récupère les datas des photographes
         const { photographers } = await getPhotographers();
         displayData(photographers);
+        const {media} =await getPhotographers();
+        if(!localStorage.getItem('media')){
+            localStorage.setItem('media', JSON.stringify(media));
+        }
+       
+        
     };
     
     init();

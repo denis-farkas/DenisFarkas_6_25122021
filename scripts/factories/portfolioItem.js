@@ -1,5 +1,6 @@
 function portfolioItemFactory(data) {
     const { index, id, title, image, video, likes} = data;
+    
     function getPortfolioCardDOM() {
       const article = document.createElement("article");
       if (image) {
@@ -31,7 +32,7 @@ function portfolioItemFactory(data) {
       like.setAttribute("id", `${id}`);
       const i = document.createElement("i");
       i.className="fa fa-heart";
-      i.setAttribute("onclick", `Liked(${id})`);
+      i.setAttribute("onclick", `liked(${id})`);
       rightSide.appendChild(like);
       rightSide.appendChild(i);
       return article;

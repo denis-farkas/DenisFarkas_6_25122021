@@ -1,14 +1,18 @@
+let idPhotographer = getIdPhotographer();
 
- let idPhotographer = getIdPhotographer();
- let idPortfolio = "portfolio"+idPhotographer;
-
- function getIdPhotographer () {
+//fonction qui isole l'id dans l'url avec get
+function getIdPhotographer () {
     const parameterURL = new URLSearchParams(window.location.search);
     const idPhotographer = parseInt(parameterURL.get('id'), 10);
     return idPhotographer;
-    }
- 
- async function getPhotographers() {
+}
+
+//concaténation de "portfolio" avec idPhotographer pour nommer chaque portfolio dans localStorage
+let portfolioId = "portfolios" + idPhotographer;
+
+//lecture du JSON pour la liste de photographes
+
+async function getPhotographers() {
         
     const response = await fetch('./data/photographers.json', {
         headers : { 
@@ -16,12 +20,51 @@
           'Accept': 'application/json'
          }
         });
-    const photographers = await response.json()
+    const photographers = await response.json();
     return photographers;
+}
+
+getPhotographers();
+
+const photographers = photographers;
+// Extrait de photographers, le photographe à afficher.
+
+const onePhotographer = photographers.photographers.find(item=>item.id===idPhotographer);
+
+//le garde dans localStorage à toute fin utile.
+localStorage.setItem('onePhotographer', JSON.stringify(onePhotographer));
+
+
+
+/* 1 - Si portfolio n'est pas déja en mémoire dans localStorage, filtre photographers.media avec idPhotographer pour 
+retrouver la collection de médias qui lui appartiennent.
+
+2 - applique un index avec map sur portfolio pour faciliter la construction future du slide.
+
+3 - garde dans localStorage ce portfolio comme portfolioId
+
+4 - Sinon, extrait portfolio de localStorage
+*/
+
+function getPortfolio(photographers, idPhotographer, portfolioId){
+
+    if(!localStorage.getItem(portfolioId)){
+        const portfolio = photographers.media.filter(item=>item.photographerId===idPhotographer);
+    //Ajout d'un index pour faciliter l'affichage en slide
+        const indexedPortfolio = portfolio.map((item, index)=>({index, ...item}));
+        
+        localStorage.setItem(portfolioId, JSON.stringify(indexedPortfolio));
     }
+    const portfolio = JSON.parse(localStorage.getItem(portfolioId));
+    
+    return portfolio;
+} 
 
+let portfolio = getPortfolio(photographers, idPhotographer, portfolioId);
 
+//utilisation des factories pour charger la page
 
+//1 - Header et structure de la page
 async function displayPhotographer(onePhotographer){
     const photographerMain = document.querySelector("main");
     const headerModel = headerFactory(onePhotographer);
@@ -32,7 +75,7 @@ async function displayPhotographer(onePhotographer){
     photographerMain.appendChild(userBodyDOM);
     userBodyDOM.appendChild(portfolioSection);
     }
-
+// 2 - Modale de contact
 async function displayModalContact(onePhotographer){
         const photographerBody =document.querySelector("body");
         const contactModel = modalContactFactory(onePhotographer);
@@ -40,7 +83,7 @@ async function displayModalContact(onePhotographer){
         photographerBody.appendChild(userContactModalDOM);
     }
 
-
+// 3 - Section Portfolio
 async function displayPortfolio(collection){
     const portfolioBody = document.querySelector(".portfolio_body");
     collection.forEach((item) =>{
@@ -51,26 +94,7 @@ async function displayPortfolio(collection){
    
 }
 
-async function getOnePhotographer(photographers, idPhotographer){
-    const onePhotographer = photographers.photographers.find(item=>item.id===idPhotographer);
-    return onePhotographer;
-}
-
-
-async function getPortfolio(photographers, idPhotographer, idPortfolio){
-    
-    if(!localStorage.getItem(idPortfolio)){
-        const portfolio = photographers.media.filter(item=>item.photographerId===idPhotographer);
-    //Ajout d'un index pour faciliter l'affichage en slide
-        const indexedPortfolio = portfolio.map((item, index)=>({index, ...item}));
-        
-        localStorage.setItem(idPortfolio, JSON.stringify(indexedPortfolio));
-    }
-    const portfolio = JSON.parse(localStorage.getItem(idPortfolio));
-    
-    return portfolio;
-}
-
+// 4 - Structure de la modale lightbox
 async function displayModalSection(){
     const modal = document.querySelector(".lightbox_modal");
     const modalModel = modalMediaFactory();
@@ -78,9 +102,8 @@ async function displayModalSection(){
     modal.appendChild(modalSection);
 }
 
-
-
-function displayLightbox(portfolio) {
+// 5 - chargement des slides de la modale lightbox
+async function displayLightbox(portfolio) {
     const modalSection = document.querySelector(".body_center");
     portfolio.forEach((item) => {
         const modalMediaModel = modalMediaItemFactory(item);
@@ -89,29 +112,8 @@ function displayLightbox(portfolio) {
     });
 };
 
-
-
-
-async function init(idPhotographer, idPortfolio){
-    
-    const photographers = await getPhotographers();
-    const onePhotographer = await getOnePhotographer(photographers, idPhotographer);
-    localStorage.setItem('onePhotographer', JSON.stringify(onePhotographer));
-    const portfolio = await getPortfolio(photographers, idPhotographer, idPortfolio);
-   
-    displayPhotographer(onePhotographer);
-    displayModalContact(onePhotographer);
-    displayPortfolio(portfolio);
-    displayModalSection();
-    displayLightbox(portfolio);
-    totalLiked(portfolio);
-};
-
-init(idPhotographer, idPortfolio);
-
-
-//badge Likes
-function totalLiked(portfolio){
+//6 - calcule le totale de likes de portfolio
+async function totalLiked(portfolio){
     let count=0;
     portfolio.forEach((item) =>{
         count = count + item.likes;
@@ -121,6 +123,18 @@ function totalLiked(portfolio){
 }
 
 
+async function init(onePhotographer, portfolio){
+    await displayPhotographer(onePhotographer);
+    await displayModalContact(onePhotographer);
+    await displayPortfolio(portfolio);
+    await displayModalSection();
+    await displayLightbox(portfolio);
+    await totalLiked(portfolio);
+};
+
+init(onePhotographer, portfolio);
+
+/* Ouverture, fermeture des modales */
 
 const contact = document.querySelector(".contact_modal");
 const lightbox = document.querySelector(".lightbox_modal");
@@ -139,18 +153,18 @@ function closeLightbox(){
 }
 
 
-//lightbox show slides
+// fonction lightbox show slides
 
-// Next/previous controls
+// controles
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
 
-// Thumbnail image controls
 function currentSlide(n) {
   showSlides(slideIndex = n);
 }
 
+//fonction
 function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("slides");
@@ -163,7 +177,7 @@ function showSlides(n) {
     lightbox.style.display="block";
 }
 
-//likes
+//fonction ajout de likes
 function liked(id) {
     const like = document.getElementById(id);
     let likes = Number(like.textContent);
@@ -171,7 +185,9 @@ function liked(id) {
     like.textContent = incrementLikes.toString();
 }
 
-//fonction menu filtre
+/* Application de filtres */
+
+//fonctions menu filtre
 function sortPopular( a, b ) {
     if(a.likes > b.likes){
         return -1;
@@ -202,15 +218,16 @@ function sortTitle( a, b ) {
     return 0 
 }
 
-function sortFilter(value, portfolio){
+// Gestion des filtres selon option choisie.
+function sortFilter(value){
 
-    if(value === "1"){
+    if(value === 0){
         let filter = portfolio.sort(sortPopular);
         return filter;
-    }else if(value === "2"){
+    }else if(value === 1){
         let filter = portfolio.sort(sortRecent);
         return filter;
-    }else if(value === "3"){
+    }else if(value === 2){
         let filter = portfolio.sort(sortTitle);
         return filter;
     }else{
@@ -220,17 +237,16 @@ function sortFilter(value, portfolio){
     
 }
 
-
+// Application des filtres.
 
 function  changeFilter(value){
 console.log(value);
-const portfolio = JSON.parse(localStorage.getItem(idPortfolio));
 const portfolioBody = document.querySelector(".portfolio_body");
-const filter = sortFilter(value, portfolio);
-console.log(filter);
+const filter = sortFilter(value);
 portfolioBody.innerHTML=""
 displayPortfolio(filter);
 displayLightbox(filter);
+
 }
 
 

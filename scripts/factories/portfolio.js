@@ -1,6 +1,6 @@
 
 function headerFactory(data) {
-    const { name, portrait, city, country, tagline, price } = data;
+    const { id, name, portrait, city, country, tagline, price } = data;
     const main = document.querySelector("main");
     const picture = `assets/photographers/${portrait}`;
 
@@ -10,27 +10,30 @@ function headerFactory(data) {
       main.appendChild(header);
       const headerLeft = document.createElement("div");
       headerLeft.className = "photograph_header_left";
-      const h2 = document.createElement("h2");
-      h2.textContent = name;
-      const h6 = document.createElement("h6");
-      h6.textContent = `${city}, ${country}`;
-      const p = document.createElement("p");
-      p.className ="subTitle";
-      p.textContent = tagline;
-      headerLeft.appendChild(h2);
-      headerLeft.appendChild(h6);
-      headerLeft.appendChild(p);
+      const title = document.createElement("h1");
+      title.textContent = name;
+      const origin = document.createElement("div");
+      origin.className="origin";
+      origin.textContent = `${city}, ${country}`;
+      const subtitle = document.createElement("div");
+      subtitle.className ="subtitle";
+      subtitle.textContent = tagline;
+      headerLeft.appendChild(title);
+      headerLeft.appendChild(origin);
+      headerLeft.appendChild(subtitle);
       const btn = document.createElement("button");
       btn.className = "contact-button";
       btn.setAttribute("onclick", "displayContactModal()")
       btn.textContent="Contactez-moi";
       const img = document.createElement("img");
       img.setAttribute("src", picture);
+      img.setAttribute("alt", `${name}`);
       header.appendChild(headerLeft);
       header.appendChild(btn);
       header.appendChild(img);
       return header;
     }
+    
     function getUserBodyDOM() {
         const body =document.createElement("div");
         body.className="photograph_body";
@@ -58,53 +61,47 @@ function headerFactory(data) {
         badgeRight.appendChild(span);
         return body;
     }
+
+
     function getPortfolioSectionDOM(){
       const section = document.createElement("section");
       section.className="portfolio_section";
       const portfolio_header = document.createElement("div");
       portfolio_header.className="portfolio_header";
-      main.appendChild(section);
-      section.appendChild(portfolio_header);
-      const menu = document.createElement("div");
-      menu.className="listbox-area";
-      const label = document.createElement("p");
-      label.textContent="Trier par";
-      label.className="tri";
-      label.setAttribute("id", "tri");
-      menu.appendChild(label);
-      portfolio_header.appendChild(menu);
-      /*const wrapper =document.createElement("button");
-      wrapper.className="wrapper-button";
-      wrapper.setAttribute("id", "button");
-      wrapper.setAttribute("aria-haspopup", "listbox");
-      wrapper.setAttribute("aria-labelledby", "tri button");
-      wrapper.textContent = "Popularité ▾";
-      menu.appendChild(wrapper);*/
-      const listbox =document.createElement("ul");
-      listbox.setAttribute("role", "listbox");
-      listbox.setAttribute("tabindex", "-1");
-      listbox.setAttribute("aria-labelledby", "tri");
-      listbox.setAttribute("id", "elem_list");
-      //listbox.className = "hidden";
-      menu.appendChild(listbox);
-      const filtrePopular = document.createElement("li");
-      filtrePopular.setAttribute("role", "option");
-      filtrePopular.textContent = "Popularité";
-      filtrePopular.setAttribute("onclick", "filterPopular()");
-      const filtreDate = document.createElement("li");
-      filtreDate.setAttribute("role", "option");
-      filtreDate.textContent = "Date";
-      filtreDate.setAttribute("onclick", "filterDate()");
-      const filtreTitre = document.createElement("li");
-      filtreTitre.setAttribute("role", "option");
-      filtreTitre.textContent = "Titre";
-      filtreTitre.setAttribute("onclick", "filterTitre()");
-      listbox.appendChild(filtrePopular);
-      listbox.appendChild(filtreDate);
-      listbox.appendChild(filtreTitre);
       const portfolio_body = document.createElement("div");
       portfolio_body.className="portfolio_body";
-      section.appendChild(portfolio_body)
+      section.appendChild(portfolio_header);
+      section.appendChild(portfolio_body);
+      main.appendChild(section);
+      const menu = document.createElement("div");
+      menu.className="select-area";
+      const label = document.createElement("label");
+      label.textContent="Trier par";
+      label.className="select-label";
+      label.setAttribute("for", "select");
+      menu.appendChild(label);
+      portfolio_header.appendChild(menu);
+      const select = document.createElement("select");
+      select.setAttribute("id", "select");
+      select.setAttribute("onchange", "changeFilter(value)");
+      menu.appendChild(select);
+      const nofiltre = document.createElement("option");
+      nofiltre.textContent ="Popularité";
+      nofiltre.style.display ="none";
+      const filtrePopular = document.createElement("option");
+      filtrePopular.setAttribute("value", "1");
+      filtrePopular.textContent = "Popularité";
+      const filtreDate = document.createElement("option");
+      filtreDate.setAttribute("value", "2");
+      filtreDate.textContent = "Date";
+      const filtreTitre = document.createElement("option");
+      filtreTitre.setAttribute("value", "3");
+      filtreTitre.textContent = "Titre";
+      select.appendChild(nofiltre);
+      select.appendChild(filtrePopular);
+      select.appendChild(filtreDate);
+      select.appendChild(filtreTitre);
+      
       return section;
     }
     return{getUserHeaderDOM, getUserBodyDOM, getPortfolioSectionDOM};
