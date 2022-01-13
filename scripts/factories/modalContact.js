@@ -16,7 +16,7 @@ function modalContactFactory(data) {
         header.appendChild(h2);
         header.appendChild(img);
         const form=document.createElement("form");
-        form.setAttribute("onsubmit","event.preventDefault();closeModal();");
+        form.setAttribute("onsubmit"," event.preventDefault(); printInputValues();  closeModal();");
         modal.appendChild(form);
 
         const divFirst=document.createElement("div");
@@ -27,6 +27,7 @@ function modalContactFactory(data) {
         inpFirst.setAttribute("id", "first");
         inpFirst.setAttribute("type", "text");
         inpFirst.setAttribute("name", "firstname");
+        inpFirst.required = true;
         form.appendChild(divFirst);
         divFirst.appendChild(labelFirst);
         divFirst.appendChild(inpFirst);
@@ -39,6 +40,7 @@ function modalContactFactory(data) {
         inpLast.setAttribute("id", "last");
         inpLast.setAttribute("type", "text");
         inpLast.setAttribute("name", "lastname");
+        inpLast.required = true;
         form.appendChild(divLast);
         divLast.appendChild(labelLast);
         divLast.appendChild(inpLast);
@@ -51,6 +53,7 @@ function modalContactFactory(data) {
         inpEmail.setAttribute("id", "email");
         inpEmail.setAttribute("type", "email");
         inpEmail.setAttribute("name", "email");
+        inpEmail.required = true;
         form.appendChild(divEmail);
         divEmail.appendChild(labelEmail);
         divEmail.appendChild(inpEmail);
@@ -62,6 +65,7 @@ function modalContactFactory(data) {
         const inpMessage=document.createElement("textarea");
         inpMessage.setAttribute("id", "message");
         inpMessage.setAttribute("name", "message");
+        inpMessage.required = true;
         form.appendChild(divMessage);
         divMessage.appendChild(labelMessage);
         divMessage.appendChild(inpMessage);
@@ -72,9 +76,8 @@ function modalContactFactory(data) {
         form.appendChild(inpId);
 
         const sendButton=document.createElement("button");
-        sendButton.setAttribute("onclick","closeModal();")
         sendButton.textContent="Envoyer";
-        sendButton.className="contact-button";
+        sendButton.className="submit-button";
         form.appendChild(sendButton);
         return contactModal;
     }

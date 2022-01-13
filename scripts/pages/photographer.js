@@ -1,13 +1,18 @@
 
  let idPhotographer = getIdPhotographer();
+
+ 
+/*concaténation de "portfolio" avec idPhotographer pour nommer chaque portfolio dans localStorage*/
  let idPortfolio = "portfolio"+idPhotographer;
 
+/*fonction qui isole l'id dans l'url avec get*/
  function getIdPhotographer () {
     const parameterURL = new URLSearchParams(window.location.search);
     const idPhotographer = parseInt(parameterURL.get('id'), 10);
     return idPhotographer;
     }
  
+/*lecture du JSON pour la liste de photographes*/   
  async function getPhotographers() {
         
     const response = await fetch('./data/photographers.json', {
@@ -20,8 +25,9 @@
     return photographers;
     }
 
+/* utilisation des factories pour charger la page */
 
-
+/* 1 - Header et structure de la page */ 
 async function displayPhotographer(onePhotographer){
     const photographerMain = document.querySelector("main");
     const headerModel = headerFactory(onePhotographer);
@@ -33,6 +39,7 @@ async function displayPhotographer(onePhotographer){
     userBodyDOM.appendChild(portfolioSection);
     }
 
+/* 2 - Modale de contact */   
 async function displayModalContact(onePhotographer){
         const photographerBody =document.querySelector("body");
         const contactModel = modalContactFactory(onePhotographer);
@@ -40,7 +47,7 @@ async function displayModalContact(onePhotographer){
         photographerBody.appendChild(userContactModalDOM);
     }
 
-
+/* 3 - Section Portfolio */ 
 async function displayPortfolio(collection){
     const portfolioBody = document.querySelector(".portfolio_body");
     collection.forEach((item) =>{
@@ -51,17 +58,26 @@ async function displayPortfolio(collection){
    
 }
 
+/* Extrait de photographers, le photographe à afficher. */
 async function getOnePhotographer(photographers, idPhotographer){
     const onePhotographer = photographers.photographers.find(item=>item.id===idPhotographer);
     return onePhotographer;
 }
 
+/* 1 - Si portfolio n'est pas déja en mémoire dans localStorage, filtre photographers.media avec idPhotographer pour 
+retrouver la collection de médias qui lui appartiennent.
 
+2 - applique un index avec map sur portfolio pour faciliter la construction future du slide.
+
+3 - garde dans localStorage ce portfolio comme portfolioId
+
+4 - Sinon, extrait portfolio de localStorage
+*/
 async function getPortfolio(photographers, idPhotographer, idPortfolio){
     
     if(!localStorage.getItem(idPortfolio)){
         const portfolio = photographers.media.filter(item=>item.photographerId===idPhotographer);
-    //Ajout d'un index pour faciliter l'affichage en slide
+    
         const indexedPortfolio = portfolio.map((item, index)=>({index, ...item}));
         
         localStorage.setItem(idPortfolio, JSON.stringify(indexedPortfolio));
@@ -71,6 +87,7 @@ async function getPortfolio(photographers, idPhotographer, idPortfolio){
     return portfolio;
 }
 
+/* Structure de la modale ligthbox */
 async function displayModalSection(){
     const modal = document.querySelector(".lightbox_modal");
     const modalModel = modalMediaFactory();
@@ -79,7 +96,7 @@ async function displayModalSection(){
 }
 
 
-
+/* Chargement des slides de la modale lightbox */
 function displayLightbox(portfolio) {
     const modalSection = document.querySelector(".body_center");
     portfolio.forEach((item) => {
@@ -90,7 +107,7 @@ function displayLightbox(portfolio) {
 };
 
 
-
+/* Chargement de la page et de ses fonctionnalités */
 
 async function init(idPhotographer, idPortfolio){
     
@@ -110,7 +127,7 @@ async function init(idPhotographer, idPortfolio){
 init(idPhotographer, idPortfolio);
 
 
-//badge Likes
+/*calcule le totale de likes du portfolio */
 function totalLiked(portfolio){
     let count=0;
     portfolio.forEach((item) =>{
@@ -121,6 +138,7 @@ function totalLiked(portfolio){
 }
 
 
+/* Ouverture, fermeture des modales */
 
 const contact = document.querySelector(".contact_modal");
 const lightbox = document.querySelector(".lightbox_modal");
@@ -139,7 +157,7 @@ function closeLightbox(){
 }
 
 
-//lightbox show slides
+//fonction lightbox show slides
 
 // Next/previous controls
 function plusSlides(n) {
@@ -163,7 +181,7 @@ function showSlides(n) {
     lightbox.style.display="block";
 }
 
-//likes
+//fonction incrémente likes
 function liked(id) {
     const like = document.getElementById(id);
     let likes = Number(like.textContent);
@@ -202,6 +220,8 @@ function sortTitle( a, b ) {
     return 0 
 }
 
+
+// Gestion des filtres selon option choisie.
 function sortFilter(value, portfolio){
 
     if(value === "1"){
@@ -221,7 +241,7 @@ function sortFilter(value, portfolio){
 }
 
 
-
+// Application des filtres.
 function  changeFilter(value){
 console.log(value);
 const portfolio = JSON.parse(localStorage.getItem(idPortfolio));
@@ -233,6 +253,14 @@ displayPortfolio(filter);
 displayLightbox(filter);
 }
 
+/* affiche en console les valeurs du formulaire  rempli lors du submit */
 
+function printInputValues(){
+    const inpFirst = document.getElementById("first");
+    const inpLast = document.getElementById("last");
+    const inpEmail = document.getElementById("email");
+    const inpMessage = document.getElementById("message");
+    console.log( inpFirst.value, inpLast.value, inpEmail.value, inpMessage.value);
+}
 
 

@@ -19,7 +19,7 @@ function modalMediaItemFactory(data) {
 
         const description = document.createElement("div");
         description.textContent = `${title}`;
-        description.className="describe";
+        description.className="describe-modal";
         media.appendChild(description);
         return media;
     }
