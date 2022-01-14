@@ -115,7 +115,6 @@ async function init(idPhotographer, idPortfolio){
     const onePhotographer = await getOnePhotographer(photographers, idPhotographer);
     localStorage.setItem('onePhotographer', JSON.stringify(onePhotographer));
     const portfolio = await getPortfolio(photographers, idPhotographer, idPortfolio);
-   
     displayPhotographer(onePhotographer);
     displayModalContact(onePhotographer);
     displayPortfolio(portfolio);
@@ -125,6 +124,7 @@ async function init(idPhotographer, idPortfolio){
 };
 
 init(idPhotographer, idPortfolio);
+
 
 
 /*calcule le totale de likes du portfolio */
@@ -241,11 +241,13 @@ function sortFilter(value, portfolio){
 }
 
 
+
 // Application des filtres.
 function  changeFilter(value){
 console.log(value);
 const portfolio = JSON.parse(localStorage.getItem(idPortfolio));
 const portfolioBody = document.querySelector(".portfolio_body");
+
 const filter = sortFilter(value, portfolio);
 console.log(filter);
 portfolioBody.innerHTML=""
