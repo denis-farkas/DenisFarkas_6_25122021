@@ -224,13 +224,13 @@ function sortTitle( a, b ) {
 // Gestion des filtres selon option choisie.
 function sortFilter(value, portfolio){
 
-    if(value === "1"){
+    if(value === "Popularité"){
         let filter = portfolio.sort(sortPopular);
         return filter;
-    }else if(value === "2"){
+    }else if(value === "Date"){
         let filter = portfolio.sort(sortRecent);
         return filter;
-    }else if(value === "3"){
+    }else if(value === "Titre"){
         let filter = portfolio.sort(sortTitle);
         return filter;
     }else{

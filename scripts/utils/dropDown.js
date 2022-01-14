@@ -83,9 +83,9 @@ function DropDown(dropDown) {
   
       let dropDown = new DropDown(document.getElementById("dropdown"));
     
-
       dropDown.element.addEventListener('change', e => {
         console.log('changed', dropDown.value);
+        changeFilter(dropDown.value);
       });
       
       dropDown.element.addEventListener('opened', e => {
@@ -95,10 +95,15 @@ function DropDown(dropDown) {
       dropDown.element.addEventListener('closed', e => {
         console.log('closed', dropDown.value);
       });
-    }
-  
+    } 
+
+    
   }); 
+
+
   
+  
+
 
 
 
