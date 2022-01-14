@@ -6,6 +6,7 @@ function portfolioItemFactory(data) {
       if (image) {
         const img = document.createElement('img');
         img.setAttribute("src", `assets/media/${image}`);
+        img.setAttribute("alt", `${title}`);
         img.setAttribute("onclick", `currentSlide(${index})`);
         article.appendChild(img);
       } else if (video) {

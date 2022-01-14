@@ -1,13 +1,9 @@
-
-  window.addEventListener("DOMContentLoaded", (event) => {
-    console.log("DOM entièrement chargé et analysé");
-    const dropDown = new DropDown(document.querySelector('.dropdown'));
-    console.dir(dropDown);
-  });
- 
+document.addEventListener('readystatechange', event => {
+  if (event.target.readyState === 'complete') {
 
 
 function DropDown(dropDown) {
+ 
     const [toggler, menu] = dropDown.children;
     
     const handleClickOut = e => {
@@ -59,6 +55,7 @@ function DropDown(dropDown) {
       item.addEventListener('keydown', handleItemKeyDown);
       item.addEventListener('click', () => setValue(item));
     });
+
     
     this.element = dropDown;
     
@@ -82,26 +79,34 @@ function DropDown(dropDown) {
         document.removeEventListener('click', handleClickOut);
       }
     }
-
-    dropDown.element.addEventListener('change', e => {
-        if(dropDown.value==="Popularité"){
-            sortFilter("1", portfolio);
-        }else if(dropDown.value==="Date"){
-        sortFilter("2", portfolio);
-        }else if(dropDown.value==="Titre"){
-        sortFilter("3", portfolio); 
-        }
-    console.log('changed', dropDown.value);
-    });
-
-    dropDown.element.addEventListener('opened', e => {
-    console.log('opened', dropDown.value);
-    });
-
-    dropDown.element.addEventListener('closed', e => {
-    console.log('closed', dropDown.value);
-    });
   }
+  
+      let dropDown = new DropDown(document.getElementById("dropdown"));
+    
+
+      dropDown.element.addEventListener('change', e => {
+        console.log('changed', dropDown.value);
+      });
+      
+      dropDown.element.addEventListener('opened', e => {
+        console.log('opened', dropDown.value);
+      });
+      
+      dropDown.element.addEventListener('closed', e => {
+        console.log('closed', dropDown.value);
+      });
+    }
+  
+  }); 
+  
+
+
+
+
+    
+      
+    
+  
   
     
     

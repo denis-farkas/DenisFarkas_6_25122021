@@ -81,7 +81,7 @@ function headerFactory(data) {
 
       const menu = document.createElement("div");
       menu.className="dropdown";
-      menu.setAttribute("id", "dropDown");
+      menu.setAttribute("id", "dropdown");
       portfolio_header.appendChild(menu);
       const select = document.createElement("button");
       select.className = "dropdown-toggle";

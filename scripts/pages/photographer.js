@@ -240,20 +240,22 @@ function sortFilter(value, portfolio){
     
 }
 
-
-
 // Application des filtres.
 function  changeFilter(value){
-console.log(value);
 const portfolio = JSON.parse(localStorage.getItem(idPortfolio));
 const portfolioBody = document.querySelector(".portfolio_body");
 
 const filter = sortFilter(value, portfolio);
-console.log(filter);
+
 portfolioBody.innerHTML=""
 displayPortfolio(filter);
 displayLightbox(filter);
 }
+
+
+
+
+
 
 /* affiche en console les valeurs du formulaire  rempli lors du submit */
 
