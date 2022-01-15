@@ -419,23 +419,26 @@ form textarea{
  }
  
  
- .dropdown .dropdown-toggle::after {
-   content: '';
-   border-width: 6px;
-   border-radius: 3px;
-   border-style: solid;
-   border-color: transparent;
-   border-top-color: inherit;
+ .dropdown .dropdown-toggle:before {
+   font-family: "Font Awesome 5 Free";
+   content: "\f107";
+   font-weight: 900;
+   color:white;
    position: absolute;
    right: 12px;
    top: calc(50% + 3px);
    transform: translateY(-50%);
  }
  
- .dropdown .dropdown-toggle.active::after {
-   border-color: transparent;
-   border-bottom-color: inherit;
-   top: calc(50% - 3px);
+ .dropdown .dropdown-toggle.active:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f107";
+  font-weight: 900;
+  color:white;
+  position: absolute;
+  right: 12px;
+  top: calc(50% + 3px);
+  transform: translateY(-50%);
  }
  
  .dropdown .dropdown-menu {
@@ -455,9 +458,24 @@ form textarea{
    padding-inline-start: 0px;
  }
 
+
+
+
+
  .dropdown .dropdown-menu[aria-expanded="true"] {
    visibility: visible;
  }
+
+ .dropdown .dropdown-menu[aria-expanded="true"]:before{
+  font-family: "Font Awesome 5 Free";
+  content: "\f106";
+  font-weight: 900;
+  color:white;
+  position: absolute;
+  right: 12px;
+  top: 12%;
+ }
+
  
  .dropdown .dropdown-menu > li {
    display: block;
@@ -472,9 +490,12 @@ form textarea{
   border-bottom:1px solid #fff;
  }
 
+
+
  
  .dropdown .dropdown-menu > li:hover,
  .dropdown .dropdown-menu > li:focus {
    outline: none;
+   border-radius: 3px;
    background: #db8876;
  }

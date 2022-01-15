@@ -79,8 +79,10 @@ function DropDown(dropDown) {
         document.removeEventListener('click', handleClickOut);
       }
     }
+
+    
   }
-  
+ 
       let dropDown = new DropDown(document.getElementById("dropdown"));
     
       dropDown.element.addEventListener('change', e => {
