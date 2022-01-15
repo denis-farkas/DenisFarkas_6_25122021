@@ -148,91 +148,6 @@ main{
   justify-content: left;
 }
 
-.portfolio_section .dropdown{
- display:flex;
- margin: 12px 100px;
- position:relative;
-}
-
-.portfolio_section .dropdown .select-label{
- font-weight: bold;
- margin-right: 10px;
- font-size: 18px;
- }
-
-.dropdown .dropdown-toggle {
-  appearance: none;
-  background: #901c1c;
-  color: #fff;
-  border: 0;
-  padding: 12px 35px 12px 12px;
-  border-radius: 3px;
-  text-align: left;
-  position: relative;
-  max-width: 300px;
-  cursor: pointer;
-  outline: none;
-}
-
-
-.dropdown .dropdown-toggle::after {
-  content: '';
-  border-width: 6px;
-  border-radius: 3px;
-  border-style: solid;
-  border-color: transparent;
-  border-top-color: inherit;
-  position: absolute;
-  right: 12px;
-  top: calc(50% + 3px);
-  transform: translateY(-50%);
-}
-
-.dropdown .dropdown-toggle.active::after {
-  border-color: transparent;
-  border-bottom-color: inherit;
-  top: calc(50% - 3px);
-}
-
-.dropdown .dropdown-menu {
-  position: absolute;
-  left: 0%;
-  top: 3%;
-  transform: translateY(-10%);
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(150, 150, 150, 0.65);
-  list-style: none;
-  padding: 5px 0;
-  margin: 0;
-  max-width: 320px;
-  width: calc(100% + 24px);
-  border-radius: 3px;
-  z-index: 10;
-  visibility: hidden;
-  overflow: auto;
-  max-height: 200px;
-}
-
-
-.dropdown .dropdown-menu[aria-expanded="true"] {
-  visibility: visible;
-}
-
-.dropdown .dropdown-menu > li {
-  height: 35px;
-  display: block;
-  align-items: center;
-  padding: 10px 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.dropdown .dropdown-menu > li:hover,
-.dropdown .dropdown-menu > li:focus {
-  outline: none;
-  background: #f2f2f2;
-}
 
 .describe{
   width: 250px;
@@ -493,10 +408,11 @@ form textarea{
    color: #fff;
    border: 0;
    padding: 12px 35px 12px 12px;
-   border-radius: 3px;
+   border-radius: 7px;
    text-align: left;
    position: relative;
-   max-width: 300px;
+   width: 170px;
+   height:69px;
    cursor: pointer;
    outline: none;
    font-size: 18px;
@@ -528,35 +444,34 @@ form textarea{
    top: 3%;
    transform: translateY(-10%);
    background: #901c1c;
-   box-shadow: 0 1px 4px rgba(150, 150, 150, 0.65);
    list-style: none;
-   padding: 5px 0;
    margin: 0;
-   max-width: 320px;
-   width: calc(100% + 24px);
-   border-radius: 3px;
+   width: 170px;
+   border-radius: 7px;
    z-index: 10;
    visibility: hidden;
-   overflow: auto;
-   max-height: 200px;
    font-size: 18px;
-   color:#fff; 
+   color:#fff;
+   padding-inline-start: 0px;
  }
- 
- 
+
  .dropdown .dropdown-menu[aria-expanded="true"] {
    visibility: visible;
  }
  
  .dropdown .dropdown-menu > li {
-   height: 35px;
    display: block;
    align-items: center;
-   padding: 10px 12px;
+   padding: 20px 12px;
    overflow: hidden;
    text-overflow: ellipsis;
    white-space: nowrap;
  }
+
+ .dropdown .dropdown-menu li:not(:last-child) {
+  border-bottom:1px solid #fff;
+ }
+
  
  .dropdown .dropdown-menu > li:hover,
  .dropdown .dropdown-menu > li:focus {
