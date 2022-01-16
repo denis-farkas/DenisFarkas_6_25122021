@@ -184,9 +184,13 @@ function showSlides(n) {
 //fonction incrémente likes
 function liked(id) {
     const like = document.getElementById(id);
+    const total = document.getElementById("total");
     let likes = Number(like.textContent);
+    let totalLikes = Number(total.textContent);
     incrementLikes= likes + 1;
+    incrementTotal= totalLikes +1;
     like.textContent = incrementLikes.toString();
+    total.textContent = incrementTotal.toString();
 }
 
 //fonction menu filtre
