@@ -12,7 +12,7 @@ function portfolioItemFactory(data) {
       } else if (video) {
         const vid = document.createElement('video');
         vid.setAttribute("src", `assets/media/${video}`);
-        vid.setAttribute("autoplay","metadata");
+        vid.setAttribute("autoplay",true);
         vid.setAttribute("onclick", `currentSlide(${index})`);
         article.appendChild(vid);
       }
