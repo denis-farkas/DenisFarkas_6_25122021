@@ -67,7 +67,7 @@ h1 {
 
 .photograph_header {
   display: flex;
-  /*background-color: #fafafa;*/
+  background-color: #fafafa;
   height: 18.75rem;
   width: 77.5rem;
   margin:0 6rem;
@@ -134,7 +134,7 @@ h1 {
 }
 
 .portfolio_section{
- /* background-color: white;*/
+  background-color: white;
   margin:1.25rem 0;
   padding-bottom: 5rem;
 }
