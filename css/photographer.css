@@ -1,11 +1,9 @@
 body {
   font-family: "DM Sans", sans-serif;
-  margin: 0 auto;
-  width:1440px;
- /* background-image: url("../assets/images/accueil.jpg");
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: 50% 0%;*/
+}
+
+.container{
+  margin:0 15rem;
 }
 
 header {
@@ -13,83 +11,81 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
-  margin: 0 100px;
-  margin-top: 18px;
+  height: 5.6rem;
+  padding:1.12rem 6rem;
+
 }
 
 .header-photo{
-margin-top:30px;
-margin-left:80px;
+margin-top:0.8rem;
+margin-left:13.8rem;
 }
 
 h1 {
   color: #901c1c;
-  font-size: 36px;
+  font-size: 2.25rem;
   font-weight: regular;
+  padding-right: 0.5rem;
 }
 
 
 .logo {
-  height: 50px;
-  margin-left:18px;
+  height: 3.12rem;
+  margin-left:1.12rem;
 }
+
 
 .badge{
   position: fixed;
   bottom: 0;
-  right: 260px;
-  width:376px;
-  height: 60px;
+  right: 17%;
+  width:23.5rem;
+  height: 3.75rem;
   background-color: #db8876;
-  border-radius: 5px;
+  border-radius: 0.31rem;
   display:flex;
   justify-content: space-around;
   align-items: center;
+  transform: translateX(16%);
 }
 
 .badge-left{
   display:flex;
-  padding:20px;
-  width:170px;
-  font-size: 24px;
+  padding:1.25rem;
+  width:10.62rem;
+  font-size: 1.5rem;
   font-weight: medium;
 }
 
 .badge-right{
   display:flex;
-  padding:20px;
-  width:170px;
-  font-size: 24px;
+  padding:1.25rem;
+  width:10.62rem;
+  font-size: 1.5rem;
   font-weight: medium;
 }
 
-main{
-  margin: 20px 0;
-}
-
-
 .photograph_header {
   display: flex;
-  background-color: #fafafa;
-  height: 300px;
-  width: 1240px;
-  margin: 0 102px;
+  /*background-color: #fafafa;*/
+  height: 18.75rem;
+  width: 77.5rem;
+  margin:0 6rem;
 }
 
 .photograph_header_left {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  row-gap: 6px;
-  height:170px;
-  width: 485px;
-  margin-top: 73px;
-  margin-left:50px;
+  row-gap: 0.37rem;
+  height:10.62rem;
+  width: 30.31rem;
+  margin-top: 4.56rem;
+  margin-left:3.12rem;
 }
 
 .photograph_header_left h1 {
   color: #d3573c;
-  font-size: 64px;
+  font-size: 4rem;
   font-weight: regular;
   margin-block-start: 0;
   margin-block-end: 0;
@@ -98,28 +94,28 @@ main{
 
 .photograph_header_left .origin {
   color: #901c1c;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 
 .photograph_header_left .subtitle {
   color: #525252;
-  font-size: 18px;
+  font-size: 1.12rem;
 }
 
 .contact-button {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
   color: white;
-  padding: 11px;
-  width: 170px;
-  height: 69px;
+  padding: 0.68rem;
+  width: 10.62rem;
+  height: 4.31rem;
   border: none;
   background-color: #901c1c;
-  border-radius: 5px;
+  border-radius: 0.31rem;
   cursor: pointer;
-  margin-top: 136px;
+  margin-top: 8.5rem;
 }
 
 .contact-button:hover{
@@ -128,19 +124,19 @@ main{
 }
 
 .photograph_header img {
-  height: 200px;
-  width: 200px;
+  height: 12.5rem;
+  width: 12.5rem;
   clip-path: circle();
   object-position: 50% 50%;
   object-fit: cover;
-  margin-top: 53px;
-  margin-left: 288px;
+  margin-top: 3.31rem;
+  margin-left: 18rem;
 }
 
 .portfolio_section{
  /* background-color: white;*/
-  margin:20px 0;
-  padding-bottom: 80px;
+  margin:1.25rem 0;
+  padding-bottom: 5rem;
 }
 
 .portfolio_header{
@@ -150,7 +146,7 @@ main{
 
 
 .describe{
-  width: 250px;
+  width: 15.62rem;
   overflow:hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -158,31 +154,30 @@ main{
 
 .describe-modal{
   color: #901c1c;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .describe,
 .likes{
   color: #901c1c;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .portfolio_body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 1240px;
-  margin: 20px auto;
+  margin: 1.45rem 5.8rem;
 }
 
 .portfolio_body article img,
 .portfolio_body article video{
-  height: 300px;
-  width: 350px;
+  height: 18.75rem;
+  width: 21.87rem;
   object-position: 50% 50%;
   object-fit: cover;
   cursor: pointer;
-  border-radius: 7px;
+  border-radius: 0.44rem;
   
 
 }
@@ -191,8 +186,8 @@ article .row{
   display:flex;
   justify-content: space-between;
   align-content: center;
-  padding:10px 0;
-  margin-bottom: 17px;
+  padding:0.62rem 0;
+  margin-bottom: 1.06rem;
 }
 
 article .row .right-side{
@@ -202,19 +197,19 @@ article .row .right-side{
 }
 
 article .row i{
-  padding-left: 5px;
+  padding-left: 0.31rem;
 }
 
 .fa-heart{
   color: #901c1c;
-  font-size: 18px;
+  font-size: 1.12rem;
 }
 
 .black{
   color: black;
-  font-size: 20px;
-  padding-top: 5px;
-  padding-left: 5px;
+  font-size: 1.25rem;
+  padding-top: 0.31rem;
+  padding-left: 0.31rem;
 }
 
 .lightbox_modal {
@@ -276,7 +271,7 @@ align-content: center;
 
 .media_modal .row .body_center .slides img,
 .media_modal .row .body_center .slides video{
-  height:800px;
+  height:50rem;
   width:auto;
 }
 
@@ -289,7 +284,7 @@ align-content: center;
 
 .lightbox_subtitle {
   color: #901c1c;
-  font-size: 24px;
+  font-size: 1.5rem;
   margin-block-start: 0.5em;
   margin-block-end: 0.83em;
 }
@@ -307,16 +302,16 @@ align-content: center;
 }
 
 .modal {
-  border-radius: 5px;
+  border-radius: 0.31rem;
   background-color: #db8876;
-  width: 600px;
-  height: 750px;
+  width: 37.5rem;
+  height: 46.87rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 35px;
-  margin:50px auto;
+  padding: 2.18rem;
+  margin:3.12rem auto;
 }
 
 .modal header {
@@ -329,7 +324,7 @@ align-content: center;
 }
 
 .modal header h2 {
-  font-size: 50px;
+  font-size: 3.12rem;
   font-weight: normal;
   text-align: left;
   width:75%;
@@ -337,7 +332,7 @@ align-content: center;
 }
 
 form {
-  margin-top:30px;
+  margin-top:1.87rem;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -346,7 +341,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 30px;
+  font-size: 1.87rem;
 }
 
 form div {
@@ -354,36 +349,36 @@ form div {
   flex-direction: column;
   width: 100%;
   align-items: self-start;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 form input {
   width: 100%;
-  height: 58px;
+  height: 3.62rem;
   border: none;
-  border-radius: 5px;
-  font-size: 24px;
+  border-radius: 0.31rem;
+  font-size: 1.5rem;
 }
 
 form textarea{
   width:100%;
-  height:116px;
-  border-radius: 5px;
-  font-size: 24px;
+  height:7.25rem;
+  border-radius: 0.31rem;
+  font-size: 1.5rem;
 }
 
 .submit-button {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
   color: white;
-  padding: 11px;
-  width: 170px;
-  height: 69px;
+  padding: 0.68rem;
+  width: 10.62rem;
+  height: 4.31rem;
   border: none;
   background-color: #901c1c;
-  border-radius: 5px;
+  border-radius: 0.31rem;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 0.62rem;
 }
 
 
@@ -393,13 +388,14 @@ form textarea{
 .dropdown {
   position: relative;
   cursor: pointer;
-  font-size: 18px;
 }
 
-.portfolio_section .dropdown .select-label{
+.select-label{
   font-weight: bold;
-  margin-right: 10px;
-  font-size: 18px;
+  margin-left: 5.7rem;
+  margin-right: 1.7rem;
+  padding-top: 0.8rem; 
+  font-size: 1.13rem;
   }
  
  .dropdown .dropdown-toggle {
@@ -407,15 +403,15 @@ form textarea{
    background: #901c1c;
    color: #fff;
    border: 0;
-   padding: 12px 35px 12px 12px;
-   border-radius: 7px;
+   padding: 0.75rem 2.18rem 0.75rem 0.75rem;
+   border-radius: 0.44rem;
    text-align: left;
    position: relative;
-   width: 170px;
-   height:69px;
+   width: 10.62rem;
+   height:4.31rem;
    cursor: pointer;
    outline: none;
-   font-size: 18px;
+   font-size: 1.12rem;
  }
  
  
@@ -425,8 +421,8 @@ form textarea{
    font-weight: 900;
    color:white;
    position: absolute;
-   right: 12px;
-   top: calc(50% + 3px);
+   right: 0.75rem;
+   top: calc(50% + 0.19rem);
    transform: translateY(-50%);
  }
  
@@ -436,26 +432,25 @@ form textarea{
   font-weight: 900;
   color:white;
   position: absolute;
-  right: 12px;
-  top: calc(50% + 3px);
+  right: 0.75rem;
+  top: calc(50% + 0.19rem);
   transform: translateY(-50%);
  }
  
  .dropdown .dropdown-menu {
    position: absolute;
    left: 0%;
-   top: 3%;
+   top: 23%;
    transform: translateY(-10%);
    background: #901c1c;
    list-style: none;
    margin: 0;
-   width: 170px;
-   border-radius: 7px;
+   width: 10.62rem;
+   border-radius: 0.44rem;
    z-index: 10;
    visibility: hidden;
-   font-size: 18px;
    color:#fff;
-   padding-inline-start: 0px;
+   padding-inline-start: 0rem;
  }
 
 
@@ -472,7 +467,7 @@ form textarea{
   font-weight: 900;
   color:white;
   position: absolute;
-  right: 12px;
+  right: 0.75rem;
   top: 12%;
  }
 
@@ -480,14 +475,14 @@ form textarea{
  .dropdown .dropdown-menu > li {
    display: block;
    align-items: center;
-   padding: 20px 12px;
+   padding: 1.25rem 0.75rem;
    overflow: hidden;
    text-overflow: ellipsis;
    white-space: nowrap;
  }
 
  .dropdown .dropdown-menu li:not(:last-child) {
-  border-bottom:1px solid #fff;
+  border-bottom:0.06rem solid #fff;
  }
 
 
@@ -496,6 +491,6 @@ form textarea{
  .dropdown .dropdown-menu > li:hover,
  .dropdown .dropdown-menu > li:focus {
    outline: none;
-   border-radius: 3px;
+   border-radius: 0.19rem;
    background: #db8876;
  }

@@ -28,7 +28,7 @@
 /* utilisation des factories pour charger la page */
 
 /* 1 - Header et structure de la page */ 
-async function displayPhotographer(onePhotographer){
+function displayPhotographer(onePhotographer){
     const photographerMain = document.querySelector("main");
     const headerModel = headerFactory(onePhotographer);
     const userHeaderDOM = headerModel.getUserHeaderDOM();
@@ -40,15 +40,15 @@ async function displayPhotographer(onePhotographer){
     }
 
 /* 2 - Modale de contact */   
-async function displayModalContact(onePhotographer){
-        const photographerBody =document.querySelector("body");
-        const contactModel = modalContactFactory(onePhotographer);
-        const userContactModalDOM = contactModel.getModalContactDOM();
-        photographerBody.appendChild(userContactModalDOM);
-    }
+function displayModalContact(onePhotographer){
+    const photographerBody =document.querySelector("body");
+    const contactModel = modalContactFactory(onePhotographer);
+    const userContactModalDOM = contactModel.getModalContactDOM();
+    photographerBody.appendChild(userContactModalDOM);
+}
 
 /* 3 - Section Portfolio */ 
-async function displayPortfolio(collection){
+ function displayPortfolio(collection){
     const portfolioBody = document.querySelector(".portfolio_body");
     collection.forEach((item) =>{
         const portfolioModel = portfolioItemFactory(item);
@@ -59,7 +59,7 @@ async function displayPortfolio(collection){
 }
 
 /* Extrait de photographers, le photographe à afficher. */
-async function getOnePhotographer(photographers, idPhotographer){
+function getOnePhotographer(photographers, idPhotographer){
     const onePhotographer = photographers.photographers.find(item=>item.id===idPhotographer);
     return onePhotographer;
 }
@@ -73,7 +73,7 @@ retrouver la collection de médias qui lui appartiennent.
 
 4 - Sinon, extrait portfolio de localStorage
 */
-async function getPortfolio(photographers, idPhotographer, idPortfolio){
+function getPortfolio(photographers, idPhotographer, idPortfolio){
     
     if(!localStorage.getItem(idPortfolio)){
         const portfolio = photographers.media.filter(item=>item.photographerId===idPhotographer);
@@ -88,7 +88,7 @@ async function getPortfolio(photographers, idPhotographer, idPortfolio){
 }
 
 /* Structure de la modale ligthbox */
-async function displayModalSection(){
+function displayModalSection(){
     const modal = document.querySelector(".lightbox_modal");
     const modalModel = modalMediaFactory();
     const modalSection = modalModel.getModalMediaDOM();
@@ -112,9 +112,9 @@ function displayLightbox(portfolio) {
 async function init(idPhotographer, idPortfolio){
     
     const photographers = await getPhotographers();
-    const onePhotographer = await getOnePhotographer(photographers, idPhotographer);
+    const onePhotographer = getOnePhotographer(photographers, idPhotographer);
     localStorage.setItem('onePhotographer', JSON.stringify(onePhotographer));
-    const portfolio = await getPortfolio(photographers, idPhotographer, idPortfolio);
+    const portfolio = getPortfolio(photographers, idPhotographer, idPortfolio);
     displayPhotographer(onePhotographer);
     displayModalContact(onePhotographer);
     displayPortfolio(portfolio);
