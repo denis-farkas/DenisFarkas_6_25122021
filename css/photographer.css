@@ -1,23 +1,22 @@
-@media (max-width: 1370px) {
+@media (max-width: 1200px) {
   html {
     font-size: 95%;
-  }
-
-  .container{
-    margin:0 2rem;
   }
 }
 
 body {
   font-family: "DM Sans", sans-serif;
-  background-image: url("../assets/images/accueil.jpg");
+  /*background-image: url("../assets/images/accueil1.jpg");
   background-repeat: no-repeat;
   background-size: auto;
-  background-position: 50% 0%;
+  background-position: 50% 0%;*/
 }
 
 .container{
-  margin:0 15vw;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 a{
@@ -26,16 +25,29 @@ a{
 
 header {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5.6rem;
+  margin-top:1.2rem;
+}
+
+header .prop-center{
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 5.6rem;
+  width:65vw;
+  margin-left: -0.5rem;
+}
+
+.header-photo{
+  display: flex;
   justify-content: space-between;
   align-items: center;
   height: 5.6rem;
   padding:1.12rem 2.6vw;
-
-}
-
-.header-photo{
-margin-top:0.8rem;
-margin-left:13.8vw;
+  width:80%;
 }
 
 h1 {
@@ -44,6 +56,7 @@ h1 {
   font-weight: regular;
   padding-right: 0.5rem;
 }
+
 
 
 .logo {

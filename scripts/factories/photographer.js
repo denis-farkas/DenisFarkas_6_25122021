@@ -6,9 +6,6 @@ function photographerFactory(data) {
     const article = document.createElement("article");
     article.setAttribute("role", "link");
     article.setAttribute("aria-label", `Fiche du photographe ${name}`);
-    const span = document.createElement("span");
-    span.className="img-wrap";
-    span.setAttribute("aria-hidden", "false");
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `${name}`);
@@ -29,10 +26,10 @@ function photographerFactory(data) {
     a.setAttribute("href", `photographer.html?id=${id}`)
     a.setAttribute("role", "link");
     a.setAttribute("aria-label", `visiter la page de ${name}` );
-    span.appendChild(img);
-    a.appendChild(span);
-    a.appendChild(h2);
+    
     article.appendChild(a);
+    a.appendChild(img);
+    article.appendChild(h2);
     article.appendChild(h6);
     article.appendChild(p);
     article.appendChild(spanOther);
