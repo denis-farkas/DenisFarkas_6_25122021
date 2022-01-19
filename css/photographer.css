@@ -20,6 +20,10 @@ body {
   margin:0 15vw;
 }
 
+a{
+  text-decoration: none;
+}
+
 header {
   display: flex;
   justify-content: space-between;

@@ -4,9 +4,16 @@ function photographerFactory(data) {
   const picture = `assets/photographers/${portrait}`;
   function getUserCardDOM() {
     const article = document.createElement("article");
+    article.setAttribute("role", "link");
+    article.setAttribute("aria-label", `Fiche du photographe ${name}`);
+    const span = document.createElement("span");
+    span.className="img-wrap";
+    span.setAttribute("aria-hidden", "false");
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", "");
+    img.setAttribute("alt", `${name}`);
+    img.setAttribute("role", "img");
+    img.setAttribute("aria-label", `portrait ${name}`);
     const h2 = document.createElement("h2");
     h2.textContent = name;
     const h6 = document.createElement("h6");
@@ -14,18 +21,22 @@ function photographerFactory(data) {
     const p = document.createElement("p");
     p.className ="subTitle";
     p.textContent = tagline;
-    const span = document.createElement("span");
-    span.className="price";
-    span.textContent = `${price}€/jour`;
+    const spanOther = document.createElement("span");
+    spanOther.className="price";
+    spanOther.textContent = `${price}€/jour`;
+    spanOther.setAttribute("aria-label", `${price}€/jour`);
     const a = document.createElement("a");
     a.setAttribute("href", `photographer.html?id=${id}`)
-    a.className="streched-link";
-    article.appendChild(img);
-    article.appendChild(h2);
+    a.setAttribute("role", "link");
+    a.setAttribute("aria-label", `visiter la page de ${name}` );
+    span.appendChild(img);
+    a.appendChild(span);
+    a.appendChild(h2);
+    article.appendChild(a);
     article.appendChild(h6);
     article.appendChild(p);
-    article.appendChild(span);
-    article.append(a);
+    article.appendChild(spanOther);
+    
     return article;
   }
   return { name, picture, getUserCardDOM };

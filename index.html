@@ -5,15 +5,16 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye</title>
+    <title>Fisheye Page d'accueil</title>
   </head>
   <body>
-    <header class="container">
-        <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/></a>
-        <h1>Nos photographes</h1>
+    <header class="container" role="banner">
+        <a href="index.html"><img src="assets/images/logo.png" class="logo"  role="link" aria-label="logo Fisheye" aria-current="page" alt="page d'accueil"/></a>
+        
+        <h1 role="heading" aria-level="1">Nos photographes</h1>
     </header>
-    <main id="main" class="container">
-        <div class="photographer_section"></div>
+    <main id="main" class="container" role="main">
+        <div class="photographer_section" role="region" aria-label="Liste des photographes "></div>
     </main>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/pages/index.js"></script>

@@ -3,6 +3,7 @@ function modalMediaFactory() {
     function getModalMediaDOM() {
         const modal=document.createElement("div");
         modal.className="media_modal";
+        modal.setAttribute("aria-modal","true");
         const content =document.createElement("div");
         content.className="row";
         modal.appendChild(content);

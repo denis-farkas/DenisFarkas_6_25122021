@@ -3,22 +3,30 @@ function modalContactFactory(data) {
 
     function getModalContactDOM(){
         const contactModal = document.querySelector(".contact_modal");
+        contactModal.setAttribute("aria-modal","true");
         const modal=document.createElement("div");
         modal.className="modal";
+        modal.setAttribute("role", "dialog");
+        modal.setAttribute("aria-labelledby", "formulaire de contact");
         const header=document.createElement("header");
         const h2=document.createElement("h2");
         h2.textContent=`Contactez-moi ${name}`;
+        h2.setAttribute("role", "heading");
+        h2.setAttribute("aria-level", "2");
         const img=document.createElement("img");
         img.setAttribute("src", "assets/icons/close.svg");
         img.setAttribute("onclick", "closeModal()");
+        img.setAttribute("role", "button");
+        img.setAttribute("aria-label", "fermer le formulaire de contact");
+        img.setAttribute("tabindex", "0");
         contactModal.appendChild(modal);
         modal.appendChild(header);
         header.appendChild(h2);
         header.appendChild(img);
         const form=document.createElement("form");
         form.setAttribute("onsubmit"," event.preventDefault(); printInputValues();  closeModal();");
+        form.setAttribute("role", "form");
         modal.appendChild(form);
-
         const divFirst=document.createElement("div");
         const labelFirst=document.createElement("label");
         labelFirst.setAttribute("for", "first");
@@ -78,6 +86,7 @@ function modalContactFactory(data) {
         const sendButton=document.createElement("button");
         sendButton.textContent="Envoyer";
         sendButton.className="submit-button";
+        sendButton.setAttribute("role", "button");
         form.appendChild(sendButton);
         return contactModal;
     }
