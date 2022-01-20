@@ -5,8 +5,8 @@ function modalContactFactory(data) {
         const contactModal = document.querySelector(".contact_modal");
         const modal=document.createElement("div");
         modal.className="modal";
-        /*modal.setAttribute("role", "dialog");
-        modal.setAttribute("aria-labelledby", "formulaire de contact");*/
+        const modal_mask =document.createElement("div");
+        modal_mask.className="dialog__mask";
         const header=document.createElement("header");
         const h2=document.createElement("h2");
         h2.textContent=`Contactez-moi ${name}`;

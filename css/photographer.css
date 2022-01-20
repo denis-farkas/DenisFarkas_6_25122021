@@ -6,7 +6,7 @@
 
 body {
   font-family: "DM Sans", sans-serif;
-  background-image: url("../assets/images/accueil.jpg");
+  background-image: url("../assets/images/accueil1.jpg");
   background-repeat: no-repeat;
   background-size: auto;
   background-position: 50% 0%;
@@ -15,8 +15,7 @@ body {
 .container{
   padding-right: 0.5rem;
   padding-left: 0.5rem;
-  margin-right: auto;
-  margin-left: auto;
+  margin:0 auto;
 }
 
 a{
@@ -38,6 +37,8 @@ header .prop-center{
   align-items: center;
   height: 5.6rem;
   width:65vw;
+  margin: 0 auto;
+  padding-top: 1.2rem;
 }
 
 .prop-left{
@@ -229,10 +230,6 @@ article .row .right-side{
   display:flex;
   justify-content: right;
   align-items: center;
-}
-
-article .row i{
-  /*padding-left: 0.31rem;*/
 }
 
 .fa-heart{
