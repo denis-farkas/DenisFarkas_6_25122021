@@ -333,6 +333,8 @@ align-content: center;
   background-color: #bdbab481;
 }
 
+
+
 .modal {
   border-radius: 0.31rem;
   background-color: #db8876;
@@ -345,6 +347,7 @@ align-content: center;
   padding: 2.18rem;
   margin:3.12rem auto;
 }
+
 
 .modal header {
   display:flex;

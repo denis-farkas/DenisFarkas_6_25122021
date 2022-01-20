@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function modalContactFactory(data) {
     const { name, id } = data;
 
@@ -5,19 +6,16 @@ function modalContactFactory(data) {
         const contactModal = document.querySelector(".contact_modal");
         const modal=document.createElement("div");
         modal.className="modal";
-        const modal_mask =document.createElement("div");
-        modal_mask.className="dialog__mask";
         const header=document.createElement("header");
         const h2=document.createElement("h2");
         h2.textContent=`Contactez-moi ${name}`;
         h2.setAttribute("role", "heading");
-        h2.setAttribute("aria-level", "2");
         const img=document.createElement("img");
         img.setAttribute("src", "assets/icons/close.svg");
         img.setAttribute("onclick", "closeModal()");
         img.setAttribute("role", "button");
-        img.setAttribute("aria-label", "fermer le formulaire de contact");
-        img.setAttribute("tabindex", "0");
+        img.setAttribute("aria-label", "fermer le formulaire de contact avec la touche escape");
+        img.className="closer";
         contactModal.appendChild(modal);
         modal.appendChild(header);
         header.appendChild(h2);

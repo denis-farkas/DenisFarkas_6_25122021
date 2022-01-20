@@ -1,18 +1,18 @@
+/* eslint-disable no-unused-vars */
 
- let idPhotographer = getIdPhotographer();
-
- 
-/*concaténation de "portfolio" avec idPhotographer pour nommer chaque portfolio dans localStorage*/
- let idPortfolio = "portfolio"+idPhotographer;
-
-/*fonction qui isole l'id dans l'url avec get*/
+/* fonction qui isole l'id dans l'url avec get */
  function getIdPhotographer () {
     const parameterURL = new URLSearchParams(window.location.search);
     const idPhotographer = parseInt(parameterURL.get('id'), 10);
     return idPhotographer;
     }
+
+const idPhotographer = getIdPhotographer();   
+
+/* concaténation de "portfolio" avec idPhotographer pour nommer chaque portfolio dans localStorage */
+const idPortfolio = `portfolio${idPhotographer}`;
  
-/*lecture du JSON pour la liste de photographes*/   
+/* lecture du JSON pour la liste de photographes */   
  async function getPhotographers() {
         
     const response = await fetch('./data/photographers.json', {
@@ -107,6 +107,17 @@ function displayLightbox(portfolio) {
 };
 
 
+
+/* calcule le totale de likes du portfolio */
+function totalLiked(portfolio){
+    let count=0;
+    portfolio.forEach((item) =>{
+        // eslint-disable-next-line operator-assignment
+        count = count + item.likes;
+    });
+    const Total = document.getElementById("total");
+    Total.textContent = count;
+}
 /* Chargement de la page et de ses fonctionnalités */
 
 async function init(idPhotographer, idPortfolio){
@@ -127,38 +138,68 @@ init(idPhotographer, idPortfolio);
 
 
 
-/*calcule le totale de likes du portfolio */
-function totalLiked(portfolio){
-    let count=0;
-    portfolio.forEach((item) =>{
-        count = count + item.likes;
-    });
-    const Total = document.getElementById("total");
-    Total.textContent = count;
-}
-
 
 /* Ouverture, fermeture des modales */
 
 const contact = document.querySelector(".contact_modal");
 const lightbox = document.querySelector(".lightbox_modal");
+const photographerHeader = document.querySelector(".photograph");
 const photographerBody = document.querySelector(".photograph_body");
+const main = document.querySelector (".main");
+
+function closeContactModal(){
+    const contactBtn = document.getElementById('contacter');
+    // enlever inert des childs
+    lightbox.inert =false;
+    photographerHeader.inert = true;
+    main.inert = false;
+    contact.style.display = "none";
+    
+    contactBtn.focus();
+}
+
+function checkCloseModal(e){
+    if (e.key === "Escape"){
+    closeContactModal();
+    }
+}
 
 function displayContactModal(){
-contact.style.display = "block";
-contact.setAttribute("aria-modal", "true");
+  
+    lightbox.inert = true;
+    photographerHeader.inert = true;
+    main.inert = true;
+    
+    contact.style.display = "block";
+    document.addEventListener('keyup', (e) => {
+        if (e.key === "Escape")
+            closeContactModal();        
+    });
+
+    const form = document.querySelector("h2");
+    form.focus();
 }
 
-function closeModal(){
-contact.style.display = "none";
-}
 
 function closeLightbox(){
     lightbox.style.display ="none";
 }
 
+let slideIndex;
 
-//fonction lightbox show slides
+// fonction lightbox show slides
+function showSlides(n) {
+    let i;
+    const slides = document.getElementsByClassName("slides");
+    if (n > slides.length-1) {slideIndex = 0}
+    if (n < 0) {slideIndex = slides.length-1}
+    // eslint-disable-next-line no-plusplus
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex].style.display = "block";
+    lightbox.style.display="block";
+}
 
 // Next/previous controls
 function plusSlides(n) {
@@ -170,31 +211,19 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
 }
 
-function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("slides");
-    if (n > slides.length-1) {slideIndex = 0}
-    if (n < 0) {slideIndex = slides.length-1}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slides[slideIndex].style.display = "block";
-    lightbox.style.display="block";
-}
-
-//fonction incrémente likes
+// fonction incrémente likes
 function liked(id) {
     const like = document.getElementById(id);
     const total = document.getElementById("total");
-    let likes = Number(like.textContent);
-    let totalLikes = Number(total.textContent);
-    incrementLikes= likes + 1;
-    incrementTotal= totalLikes +1;
+    const likes = Number(like.textContent);
+    const totalLikes = Number(total.textContent);
+    const incrementLikes= likes + 1;
+    const incrementTotal= totalLikes +1;
     like.textContent = incrementLikes.toString();
     total.textContent = incrementTotal.toString();
 }
 
-//fonction menu filtre
+// fonction menu filtre
 function sortPopular( a, b ) {
     if(a.likes > b.likes){
         return -1;
@@ -230,19 +259,21 @@ function sortTitle( a, b ) {
 function sortFilter(value, portfolio){
 
     if(value === "Popularité"){
-        let filter = portfolio.sort(sortPopular);
+        const filter = portfolio.sort(sortPopular);
         return filter;
-    }else if(value === "Date"){
-        let filter = portfolio.sort(sortRecent);
+    }
+    if(value === "Date"){
+        const filter = portfolio.sort(sortRecent);
         return filter;
-    }else if(value === "Titre"){
-        let filter = portfolio.sort(sortTitle);
-        return filter;
-    }else{
-        let filter = portfolio;
+    }
+
+    if(value === "Titre"){
+        const filter = portfolio.sort(sortTitle);
         return filter;
     }
     
+        const filter = portfolio;
+        return filter; 
 }
 
 // Application des filtres.
@@ -258,10 +289,6 @@ displayLightbox(filter);
 }
 
 
-
-
-
-
 /* affiche en console les valeurs du formulaire  rempli lors du submit */
 
 function printInputValues(){
@@ -271,5 +298,3 @@ function printInputValues(){
     const inpMessage = document.getElementById("message");
     console.log( inpFirst.value, inpLast.value, inpEmail.value, inpMessage.value);
 }
-
-
