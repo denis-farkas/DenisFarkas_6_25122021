@@ -6,7 +6,7 @@
 
 body {
   font-family: "DM Sans", sans-serif;
-  background-image: url("../assets/images/accueil1.jpg");
+  background-image: url("../assets/images/accueil.jpg");
   background-repeat: no-repeat;
   background-size: auto;
   background-position: 50% 0%;
@@ -336,8 +336,8 @@ align-content: center;
 .modal {
   border-radius: 0.31rem;
   background-color: #db8876;
-  width: 37.5rem;
-  height: 46.87rem;
+  width: 37.8rem;
+  height: 49.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -347,6 +347,7 @@ align-content: center;
 }
 
 .modal header {
+  display:flex;
   justify-content: space-between;
   width: 100%;
 }
@@ -359,12 +360,11 @@ align-content: center;
   font-size: 3.12rem;
   font-weight: normal;
   text-align: left;
-  width:75%;
+  width:70%;
   
 }
 
 form {
-  margin-top:1.87rem;
   display: flex;
   width: 100%;
   flex-direction: column;
