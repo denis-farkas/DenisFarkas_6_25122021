@@ -146,6 +146,7 @@ const photographerBody = document.querySelector(".photograph_body");
 
 function displayContactModal(){
 contact.style.display = "block";
+contact.setAttribute("aria-modal", "true");
 }
 
 function closeModal(){

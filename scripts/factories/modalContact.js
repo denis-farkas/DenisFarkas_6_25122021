@@ -3,11 +3,10 @@ function modalContactFactory(data) {
 
     function getModalContactDOM(){
         const contactModal = document.querySelector(".contact_modal");
-        contactModal.setAttribute("aria-modal","true");
         const modal=document.createElement("div");
         modal.className="modal";
-        modal.setAttribute("role", "dialog");
-        modal.setAttribute("aria-labelledby", "formulaire de contact");
+        /*modal.setAttribute("role", "dialog");
+        modal.setAttribute("aria-labelledby", "formulaire de contact");*/
         const header=document.createElement("header");
         const h2=document.createElement("h2");
         h2.textContent=`Contactez-moi ${name}`;
