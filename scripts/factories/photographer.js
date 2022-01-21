@@ -12,20 +12,27 @@ function photographerFactory(data) {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `${name}`);
-    img.setAttribute("role", "link");
+    img.setAttribute("role", "status");
     img.setAttribute("aria-label", `portrait ${name}`);
     const h2 = document.createElement("h2");
     h2.textContent = name;
+    h2.setAttribute("role", "status");
+    h2.setAttribute("aria-label", `${name}`);
     const h6 = document.createElement("h6");
+    h6.setAttribute("role", "status");
+    h6.setAttribute("aria-label", `localisation ${city}, ${country}`);
     h6.textContent = `${city}, ${country}`;
     const p = document.createElement("p");
+    p.setAttribute("role", "status");
     p.className ="subTitle";
     p.textContent = tagline;
     const spanOther = document.createElement("span");
     spanOther.className="price";
+    spanOther.setAttribute("role", "status");
     spanOther.textContent = `${price}€/jour`;
     spanOther.setAttribute("aria-label", `${price}€/jour`);
     const a = document.createElement("a");
+    a.setAttribute("role", "link");
     a.setAttribute("href", `photographer.html?id=${id}`);
     a.setAttribute("aria-label", `visiter la page de ${name}` );
     
