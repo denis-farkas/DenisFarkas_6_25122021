@@ -7,6 +7,7 @@ function portfolioItemFactory(data) {
     const article = document.createElement("article");
     article.setAttribute("role", "article");
     article.setAttribute("tabindex", "0");
+    article.setAttribute("onkeypress",`currentSlide(${index})`);
     article.setAttribute("aria-label", `image numéro ${id} titre ${title} avec ${likes} likes`);
     if (image) {
       const img = document.createElement("img");
@@ -15,7 +16,7 @@ function portfolioItemFactory(data) {
       img.setAttribute("role", "img");
       img.setAttribute("aria-label", `photographie ${title}`);
       img.setAttribute("onclick", `currentSlide(${index})`);
-      img.setAttribute("onkeypress",`currentSlide(${index})`);
+      img.setAttribute("onkeydown",`currentSlide(${index})`);
       article.appendChild(img);
     } else if (video) {
       const vid = document.createElement("video");
@@ -24,7 +25,7 @@ function portfolioItemFactory(data) {
       vid.setAttribute("aria-label", `vidéo ${title}`);
       vid.setAttribute("autoplay",false);
       vid.setAttribute("onclick", `currentSlide(${index})`);
-      vid.setAttribute("onkeypress",`currentSlide(${index})`);
+      vid.setAttribute("onkeydown",`currentSlide(${index})`);
       article.appendChild(vid);
     }
     const row = document.createElement("div");
