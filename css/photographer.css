@@ -63,6 +63,10 @@ h1 {
   margin-left:1.12rem;
 }
 
+.logo:focus{
+  outline: none;
+}
+
 .badge{
   position: fixed;
   bottom: 0;
