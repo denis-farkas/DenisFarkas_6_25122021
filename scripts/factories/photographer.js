@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 // eslint-disable-next-line no-unused-vars
 function photographerFactory(data) {
   const { name, id, portrait, city, country, tagline, price } = data;
@@ -5,6 +6,8 @@ function photographerFactory(data) {
   const picture = `assets/photographers/${portrait}`;
   function getUserCardDOM() {
     const article = document.createElement("article");
+    article.setAttribute("role", "article");
+    article.setAttribute("tabindex", "0");
     article.setAttribute("aria-label", `Fiche du photographe ${name}`);
     const img = document.createElement("img");
     img.setAttribute("src", picture);
@@ -23,7 +26,7 @@ function photographerFactory(data) {
     spanOther.textContent = `${price}€/jour`;
     spanOther.setAttribute("aria-label", `${price}€/jour`);
     const a = document.createElement("a");
-    a.setAttribute("href", `photographer.html?id=${id}`)
+    a.setAttribute("href", `photographer.html?id=${id}`);
     a.setAttribute("aria-label", `visiter la page de ${name}` );
     
     article.appendChild(a);
