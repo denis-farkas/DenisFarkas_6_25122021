@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 
 /* lecture du JSON pour la liste de photographes */ 
-async function getPhotographers() {
+async function getUsers() {
         
   const response = await fetch("./data/photographers.json", {
     headers : { 
@@ -9,17 +9,17 @@ async function getPhotographers() {
       "Accept": "application/json"
     }
   });
-  const photographers = await response.json();
+  const users = await response.json();
   return photographers;
 }
 
 /* utilisation des factories pour charger la page */
-function displayData(photographers) {
+function displayData(users) {
   const photographersSection = document.querySelector(".photographer_section");
 
-  photographers.forEach((photographer) => {
+  users.forEach((user) => {
     // eslint-disable-next-line no-undef
-    const photographerModel = photographerFactory(photographer);
+    const photographerModel = photographerFactory(user);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
   });
@@ -28,8 +28,8 @@ function displayData(photographers) {
 
 async function init() {
   // Récupère les datas des photographes
-  const { photographers } = await getPhotographers();
-  displayData(photographers);
+  const { users } = await getUsers();
+  displayData(users);
   const logo=document.querySelector(".logo");
   logo.focus();
 }

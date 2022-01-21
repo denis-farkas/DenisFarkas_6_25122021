@@ -3,19 +3,19 @@
 /* eslint-disable no-unused-vars */
 
 /* fonction qui isole l'id dans l'url avec get */
-function getIdPhotographer () {
+function getIdUser () {
   const parameterURL = new URLSearchParams(window.location.search);
-  const idPhotographer = parseInt(parameterURL.get("id"), 10);
-  return idPhotographer;
+  const idUser = parseInt(parameterURL.get("id"), 10);
+  return idUser;
 }
 
-const idPhotographer = getIdPhotographer();   
+const idUser = getIdUser();   
 
-/* concaténation de "portfolio" avec idPhotographer pour nommer chaque portfolio dans localStorage */
-const idPortfolio = `portfolio${idPhotographer}`;
+/* concaténation de "portfolio" avec idUser pour nommer chaque portfolio dans localStorage */
+const idPortfolio = `portfolio${idUser}`;
  
 /* lecture du JSON pour la liste de photographes */   
-async function getPhotographers() {
+async function getUsers() {
         
   const response = await fetch("./data/photographers.json", {
     headers : { 
@@ -23,30 +23,30 @@ async function getPhotographers() {
       "Accept": "application/json"
     }
   });
-  const photographers = await response.json();
-  return photographers;
+  const users = await response.json();
+  return users;
 }
 
 /* utilisation des factories pour charger la page */
 
 /* 1 - Header et structure de la page */ 
-function displayPhotographer(onePhotographer){
-  const photographerMain = document.querySelector("main");
-  const headerModel = headerFactory(onePhotographer);
+function displayUser(oneUser){
+  const userMain = document.querySelector("main");
+  const headerModel = headerFactory(oneUser);
   const userHeaderDOM = headerModel.getUserHeaderDOM();
   const userBodyDOM = headerModel.getUserBodyDOM();
   const portfolioSection = headerModel.getPortfolioSectionDOM();
-  photographerMain.appendChild(userHeaderDOM);
-  photographerMain.appendChild(userBodyDOM);
+  userMain.appendChild(userHeaderDOM);
+  userMain.appendChild(userBodyDOM);
   userBodyDOM.appendChild(portfolioSection);
 }
 
 /* 2 - Modale de contact */   
-function displayModalContact(onePhotographer){
-  const photographerBody =document.querySelector("body");
-  const contactModel = modalContactFactory(onePhotographer);
+function displayModalContact(oneUser){
+  const userBody =document.querySelector("body");
+  const contactModel = modalContactFactory(oneUser);
   const userContactModalDOM = contactModel.getModalContactDOM();
-  photographerBody.appendChild(userContactModalDOM);
+  userBody.appendChild(userContactModalDOM);
 }
 
 /* 3 - Section Portfolio */ 
@@ -60,13 +60,13 @@ function displayPortfolio(collection){
    
 }
 
-/* Extrait de photographers, le photographe à afficher. */
-function getOnePhotographer(photographers, idPhotographer){
-  const onePhotographer = photographers.photographers.find(item=>item.id===idPhotographer);
-  return onePhotographer;
+/* Extrait de users, le photographe à afficher. */
+function getOneUser(users, idUser){
+  const oneUser = users.photographers.find(item=>item.id===idUser);
+  return oneUser;
 }
 
-/* 1 - Si portfolio n'est pas déja en mémoire dans localStorage, filtre photographers.media avec idPhotographer pour 
+/* 1 - Si portfolio n'est pas déja en mémoire dans localStorage, filtre users.media avec idUser pour 
 retrouver la collection de médias qui lui appartiennent.
 
 2 - applique un index avec map sur portfolio pour faciliter la construction future du slide.
@@ -75,10 +75,10 @@ retrouver la collection de médias qui lui appartiennent.
 
 4 - Sinon, extrait portfolio de localStorage
 */
-function getPortfolio(photographers, idPhotographer, idPortfolio){
+function getPortfolio(users, idUser, idPortfolio){
     
   if(!localStorage.getItem(idPortfolio)){
-    const portfolio = photographers.media.filter(item=>item.photographerId===idPhotographer);
+    const portfolio = users.media.filter(item=>item.photographerId===idUser);
     
     const indexedPortfolio = portfolio.map((item, index)=>({index, ...item}));
         
@@ -122,14 +122,14 @@ function totalLiked(portfolio){
 }
 /* Chargement de la page et de ses fonctionnalités */
 
-async function init(idPhotographer, idPortfolio){
+async function init(idUser, idPortfolio){
     
-  const photographers = await getPhotographers();
-  const onePhotographer = getOnePhotographer(photographers, idPhotographer);
-  localStorage.setItem("onePhotographer", JSON.stringify(onePhotographer));
-  const portfolio = getPortfolio(photographers, idPhotographer, idPortfolio);
-  displayPhotographer(onePhotographer);
-  displayModalContact(onePhotographer);
+  const users = await getUsers();
+  const oneUser = getOneUser(users, idUser);
+  localStorage.setItem("oneUser", JSON.stringify(oneUser));
+  const portfolio = getPortfolio(users, idUser, idPortfolio);
+  displayUser(oneUser);
+  displayModalContact(oneUser);
   displayPortfolio(portfolio);
   displayModalSection();
   displayLightbox(portfolio);
@@ -138,7 +138,7 @@ async function init(idPhotographer, idPortfolio){
   logo.focus();
 }
 
-init(idPhotographer, idPortfolio);
+init(idUser, idPortfolio);
 
 
 
@@ -147,8 +147,8 @@ init(idPhotographer, idPortfolio);
 
 const contact = document.querySelector(".contact_modal");
 const lightbox = document.querySelector(".lightbox_modal");
-const photographerHeader = document.querySelector(".photograph");
-const photographerBody = document.querySelector(".photograph_body");
+const userHeader = document.querySelector(".photograph");
+const userBody = document.querySelector(".photograph_body");
 const main = document.querySelector (".main");
 
 function closeContactModal(){
@@ -158,7 +158,7 @@ function closeContactModal(){
   document.removeEventListener("keyup", checkCloseModal, false);            
   // enlever inert des childs
   lightbox.inert =false;
-  photographerHeader.inert =false;
+  userHeader.inert =false;
   main.inert = false;
     
   contact.style.display = "none";
@@ -175,7 +175,7 @@ function checkCloseModal(e){
 function displayContactModal(){
   
   lightbox.inert = true;
-  photographerHeader.inert = true;
+  userHeader.inert = true;
   main.inert = true;
     
   contact.style.display = "block";
@@ -197,7 +197,7 @@ function closeLightBox(){
   document.removeEventListener("keydown", checkLightBox, false);            
   // enlever inert des childs
   contact.inert =false;
-  photographerHeader.inert =false;
+  userHeader.inert =false;
   main.inert = false;
     
   lightbox.style.display = "none";
@@ -236,13 +236,12 @@ function showSlides(n) {
   }
 
   contact.inert = true;
-  photographerHeader.inert = true;
+  userHeader.inert = true;
   main.inert = true;
 
   slides[slideIndex].style.display = "block";
   lightbox.style.display="block";
   document.addEventListener("keydown", checkLightBox);
-  console.log(e.keyCode);
 }
 
 // Next/previous controls

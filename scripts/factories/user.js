@@ -33,7 +33,7 @@ function photographerFactory(data) {
     spanOther.setAttribute("aria-label", `${price}€/jour`);
     const a = document.createElement("a");
     a.setAttribute("role", "link");
-    a.setAttribute("href", `photographer.html?id=${id}`);
+    a.setAttribute("href", `user.html?id=${id}`);
     a.setAttribute("aria-label", `visiter la page de ${name}` );
     
     article.appendChild(a);

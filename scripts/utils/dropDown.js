@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-inner-declarations */
 
 document.addEventListener("readystatechange", event => {
@@ -27,6 +28,8 @@ document.addEventListener("readystatechange", event => {
         dropDown.dispatchEvent(new Event("change"));
         toggler.focus();
       };
+
+      const nextNode = document.querySelector(".portfolio_body").firstChild;
     
       const handleItemKeyDown = (e) => {
         e.preventDefault();
@@ -37,6 +40,7 @@ document.addEventListener("readystatechange", event => {
           e.target.nextElementSibling.focus();
         } else if(e.keyCode === 27) { // escape key
           this.toggle(false);
+          nextNode.focus();
         } else if(e.keyCode === 13 || e.keyCode === 32) { // enter or spacebar key
           setValue(e.target);
         }
