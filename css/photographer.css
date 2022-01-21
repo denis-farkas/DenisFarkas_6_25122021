@@ -283,19 +283,27 @@ align-content: center;
 .media_modal .row .aside-left .img_aside,
 .media_modal .row .aside-right .img_aside{
   width:2vw;
-  height:auto;
+  height:2vw;
   padding: 0 1vw;
   cursor: pointer;
 }
 
-.media_modal .row .aside-right .aside_header,
+
 .media_modal .row .aside-right .aside_body{
-  height:24em;
+  height:65vh;
 }
+
+.media_modal .row .aside-right .aside_body img{
+  margin: 26vh auto;
+}
+
+.media_modal .row .aside-right .aside_header{
+  height:10vh;
+}
+
 
 .media_modal .row .aside-right .aside_header img{
   width:2vw;
-  height:auto;
   padding: 0 1vw;
   cursor: pointer;
 }
@@ -303,7 +311,7 @@ align-content: center;
 
 .media_modal .row .body_center .slides img,
 .media_modal .row .body_center .slides video{
-  height:50rem;
+  height:70vh;
   width:auto;
 }
 
