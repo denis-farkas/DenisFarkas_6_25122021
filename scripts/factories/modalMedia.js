@@ -16,6 +16,8 @@ function modalMediaFactory() {
     imgLeft.setAttribute("src", "assets/icons/chevron-left-solid.svg");
     imgLeft.setAttribute("onclick", "plusSlides(-1)");
     imgLeft.className="img_aside";
+    imgLeft.setAttribute("role", "button");
+    imgLeft.setAttribute("aria-label", "image précédente");
     asideLeft.appendChild(imgLeft);
     const center = document.createElement("div");
     center.className="body_center";
@@ -28,7 +30,10 @@ function modalMediaFactory() {
     asideRight.appendChild(header);
     const img=document.createElement("img");
     img.setAttribute("src", "assets/icons/close-black.svg");
-    img.setAttribute("onclick", "closeLightbox()");
+    img.setAttribute("onclick", "closeLightBox()");
+    img.setAttribute("role", "button");
+    img.setAttribute("aria-label", "fermer le slide avec la touche escape");
+    img.className="closer";
     header.appendChild(img);
     const body=document.createElement("div");
     body.className="aside_body";
@@ -37,6 +42,8 @@ function modalMediaFactory() {
     imgRight.setAttribute("src", "assets/icons/chevron-right-solid.svg");
     imgRight.setAttribute("onclick", "plusSlides(1)");
     imgRight.className="img_aside";
+    imgRight.setAttribute("role", "button");
+    imgRight.setAttribute("aria-label", "image suivante");
     body.appendChild(imgRight);
       
     return modal;

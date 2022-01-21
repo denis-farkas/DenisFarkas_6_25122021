@@ -186,13 +186,45 @@ function displayContactModal(){
 }
 
 
-function closeLightbox(){
-  lightbox.style.display ="none";
+/* fonctions lightbox */
+
+//fonction open/close lightbox
+
+function closeLightBox(){
+  const logo = document.getElementById("logo");
+
+  // eslint-disable-next-line no-use-before-define
+  document.removeEventListener("keydown", checkLightBox, false);            
+  // enlever inert des childs
+  contact.inert =false;
+  photographerHeader.inert =false;
+  main.inert = false;
+    
+  lightbox.style.display = "none";
+    
+  logo.focus();
 }
 
+
+
+function checkLightBox(e){
+  switch (e.keyCode) {
+  case 37:
+    plusSlides(-1);
+    break;
+  case 39:
+    plusSlides(1);
+    break;
+  case 27:
+    closeLightBox();
+    break;
+  }
+} 
+
+
+// fonction show slides
 let slideIndex;
 
-// fonction lightbox show slides
 function showSlides(n) {
   let i;
   const slides = document.getElementsByClassName("slides");
@@ -202,8 +234,15 @@ function showSlides(n) {
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
+
+  contact.inert = true;
+  photographerHeader.inert = true;
+  main.inert = true;
+
   slides[slideIndex].style.display = "block";
   lightbox.style.display="block";
+  document.addEventListener("keydown", checkLightBox);
+  console.log(e.keyCode);
 }
 
 // Next/previous controls

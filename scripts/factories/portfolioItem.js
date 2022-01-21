@@ -12,17 +12,19 @@ function portfolioItemFactory(data) {
       const img = document.createElement("img");
       img.setAttribute("src", `assets/media/${image}`);
       img.setAttribute("alt", `${title}`);
-      img.setAttribute("role", "link");
+      img.setAttribute("role", "img");
       img.setAttribute("aria-label", `photographie ${title}`);
       img.setAttribute("onclick", `currentSlide(${index})`);
+      img.setAttribute("onkeypress",`currentSlide(${index})`);
       article.appendChild(img);
     } else if (video) {
       const vid = document.createElement("video");
       vid.setAttribute("src", `assets/media/${video}`);
-      vid.setAttribute("role", "link");
+      vid.setAttribute("role", "img");
       vid.setAttribute("aria-label", `vidéo ${title}`);
       vid.setAttribute("autoplay",false);
       vid.setAttribute("onclick", `currentSlide(${index})`);
+      vid.setAttribute("onkeypress",`currentSlide(${index})`);
       article.appendChild(vid);
     }
     const row = document.createElement("div");

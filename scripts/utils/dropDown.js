@@ -1,24 +1,24 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-inner-declarations */
+
 document.addEventListener("readystatechange", event => {
   if (event.target.readyState === "complete") {
 
 
     function DropDown(dropDown) {
-  
+ 
       const [toggler, menu] = dropDown.children;
-      
-      // eslint-disable-next-line consistent-return
+    
       const handleClickOut = e => {
         if(!dropDown) {
           return document.removeEventListener("click", handleClickOut);
         }
-        
+      
         if(!dropDown.contains(e.target)) {
           this.toggle(false);
         }
       };
-      
+    
       const setValue = (item) => {
         const val = item.textContent;
         toggler.textContent = val;
@@ -27,10 +27,10 @@ document.addEventListener("readystatechange", event => {
         dropDown.dispatchEvent(new Event("change"));
         toggler.focus();
       };
-      
+    
       const handleItemKeyDown = (e) => {
         e.preventDefault();
-    
+  
         if(e.keyCode === 38 && e.target.previousElementSibling) { // up
           e.target.previousElementSibling.focus();
         } else if(e.keyCode === 40 && e.target.nextElementSibling) { // down
@@ -41,17 +41,17 @@ document.addEventListener("readystatechange", event => {
           setValue(e.target);
         }
       };
-    
+  
       const handleToggleKeyPress = (e) => {
         e.preventDefault();
-    
+  
         if(e.keyCode === 27) { // escape key
           this.toggle(false);
         } else if(e.keyCode === 13 || e.keyCode === 32) { // enter or spacebar key
           this.toggle(true);
         }
       };
-      
+    
       toggler.addEventListener("keydown", handleToggleKeyPress);
       toggler.addEventListener("click", () => this.toggle());
       [...menu.children].forEach(item => {
@@ -59,19 +59,18 @@ document.addEventListener("readystatechange", event => {
         item.addEventListener("click", () => setValue(item));
       });
 
-      
+    
       this.element = dropDown;
-      
+    
       this.value = toggler.textContent;
-      
+    
       this.toggle = (expand = null) => {
-        // eslint-disable-next-line no-param-reassign
         expand = expand === null
           ? menu.getAttribute("aria-expanded") !== "true"
           : expand;
-    
+  
         menu.setAttribute("aria-expanded", expand);
-        
+      
         if(expand) {
           toggler.classList.add("active");
           menu.children[0].focus();
@@ -84,13 +83,24 @@ document.addEventListener("readystatechange", event => {
         }
       };
 
-      
+    
     }
  
-    const dropDown = new DropDown(document.getElementById("dropdown"));
-    // eslint-disable-next-line no-undef
-    dropDown.element.addEventListener("change",changeFilter(dropDown.value));
-     
+    let dropDown = new DropDown(document.getElementById("dropdown"));
+    
+    dropDown.element.addEventListener("change", e => {
+      console.log("changed", dropDown.value);
+      // eslint-disable-next-line no-undef
+      changeFilter(dropDown.value);
+    });
+      
+    dropDown.element.addEventListener("opened", e => {
+      console.log("opened", dropDown.value);
+    });
+      
+    dropDown.element.addEventListener("closed", e => {
+      console.log("closed", dropDown.value);
+    });
   } 
 
     
