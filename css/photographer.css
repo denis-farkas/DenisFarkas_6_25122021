@@ -60,7 +60,8 @@ h1 {
 }
 
 .logo:focus{
-  outline: none;
+  outline: 2px solid #8cc63f;
+  background-color: #fdf6e7;
 }
 
 .badge{
@@ -294,7 +295,7 @@ align-content: center;
 }
 
 .media_modal .row .aside-right .aside_body img{
-  margin: 26vh auto;
+  margin: 35.7vh auto;
 }
 
 .media_modal .row .aside-right .aside_header{
@@ -311,7 +312,7 @@ align-content: center;
 
 .media_modal .row .body_center .slides img,
 .media_modal .row .body_center .slides video{
-  height:70vh;
+  height:90vh;
   width:auto;
 }
 
@@ -456,6 +457,10 @@ form textarea{
    outline: none;
    font-size: 1.12rem;
  }
+
+ .dropdown .dropdown-toggle:focus{
+  outline: 2px solid #8cc63f;
+}
  
  
  .dropdown .dropdown-toggle:before {

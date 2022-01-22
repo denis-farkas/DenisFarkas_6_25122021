@@ -1,63 +1,83 @@
-/* eslint-disable linebreak-style */
 // eslint-disable-next-line no-unused-vars
 function portfolioItemFactory(data) {
-  const { index, id, title, image, video, likes} = data;
-    
+  const { index, id, title, image, video, likes } = data;
+
   function getPortfolioCardDOM() {
-    const article = document.createElement("article");
-    article.setAttribute("role", "article");
-    article.setAttribute("tabindex", "0");
-    article.setAttribute("onkeypress",`currentSlide(${index})`);
-    article.setAttribute("aria-label", `image numéro ${id} titre ${title} avec ${likes} likes`);
+    const article = document.createElement('article');
+    article.setAttribute('role', 'article');
+    article.setAttribute(
+      'aria-label',
+      `image numéro ${id} titre ${title} avec ${likes} likes`
+    );
+
+    const lightBoxLink = document.createElement('a');
+    lightBoxLink.setAttribute('role', 'link');
+    lightBoxLink.setAttribute('id', `lightLink${id}`);
+    lightBoxLink.setAttribute('href', `#lightLink${id}`);
+    lightBoxLink.setAttribute('onclick', `currentSlide(${index})`);
+    lightBoxLink.setAttribute('onkeydown', `checkOnKeyImg(${index})`);
+    lightBoxLink.setAttribute('aria-label', `voir le slide de ${title}`);
+    lightBoxLink.setAttribute('tabindex', '0');
+    article.appendChild(lightBoxLink);
+
     if (image) {
-      const img = document.createElement("img");
-      img.setAttribute("src", `assets/media/${image}`);
-      img.setAttribute("alt", `${title}`);
-      img.setAttribute("role", "img");
-      img.setAttribute("aria-label", `photographie ${title}`);
-      img.setAttribute("onclick", `currentSlide(${index})`);
-      img.setAttribute("onkeydown",`currentSlide(${index})`);
-      article.appendChild(img);
+      const img = document.createElement('img');
+      img.setAttribute('src', `assets/media/${image}`);
+      img.setAttribute('alt', `${title}`);
+      img.setAttribute('role', 'img');
+      lightBoxLink.appendChild(img);
     } else if (video) {
-      const vid = document.createElement("video");
-      vid.setAttribute("src", `assets/media/${video}`);
-      vid.setAttribute("role", "img");
-      vid.setAttribute("aria-label", `vidéo ${title}`);
-      vid.setAttribute("autoplay",false);
-      vid.setAttribute("onclick", `currentSlide(${index})`);
-      vid.setAttribute("onkeydown",`currentSlide(${index})`);
-      article.appendChild(vid);
+      const vid = document.createElement('video');
+      vid.setAttribute('src', `assets/media/${video}`);
+      vid.setAttribute('aria-label', `vidéo ${title}`);
+      vid.setAttribute('autoplay', false);
+      lightBoxLink.appendChild(vid);
+    } else {
+      const img = document.createElement('img');
+      img.setAttribute('src', 'assets/media/imageneutre.jpg');
     }
-    const row = document.createElement("div");
-    row.className="row";
+
+    const row = document.createElement('div');
+    row.className = 'row';
     article.appendChild(row);
-    const span = document.createElement("span");
-    span.textContent = `${title}`;
-    span.className="describe";
-    span.setAttribute("role", "link");
-    span.setAttribute("aria-label", `${title}`);
-    span.setAttribute("onclick", `currentSlide(${index})`);
-    row.appendChild(span);
-    const rightSide = document.createElement("div");
-    rightSide.className="right-side";
+
+    const description = document.createElement('span');
+    description.textContent = `${title}`;
+    description.className = 'describe';
+    row.appendChild(description);
+
+    const rightSide = document.createElement('div');
+    rightSide.className = 'right-side';
     row.appendChild(rightSide);
-    const like = document.createElement("div");
-    like.className="likes";
+
+    const like = document.createElement('div');
+    like.className = 'likes';
     like.textContent = `${likes}`;
-    like.setAttribute("role", "timer");
-    like.setAttribute("aria-label",`Total de j'aime ${likes}`);
-    like.setAttribute("id", `${id}`);
-    const i = document.createElement("i");
-    i.className="fa fa-heart";
-    i.setAttribute("role", "img");
-    i.setAttribute("tabindex","0");
-    i.setAttribute("aria-label", "clicker ou enter ajoute un like");
-    i.setAttribute("onclick", `liked(${id})`);
-    i.setAttribute("onkeypress",`liked(${id})`);
+    like.setAttribute('role', 'timer');
+    like.setAttribute('aria-label', `Total de j'aime ${likes}`);
+    like.setAttribute('id', `${id}`);
+
+    const likeLink = document.createElement('a');
+    likeLink.setAttribute('role', 'timer');
+    likeLink.setAttribute('href', `#lightLink${id}`);
+    likeLink.setAttribute('onkeydown', `checkOnKeyLiked(${id})`);
+    likeLink.setAttribute('onclick', `liked(${id})`);
+    likeLink.setAttribute(
+      'aria-label',
+      `augmenter le total de like qui est ${likes}`
+    );
+    likeLink.setAttribute('tabindex', '0');
+
+    const icon = document.createElement('i');
+    icon.className = 'fa fa-heart';
+    icon.setAttribute('role', 'img');
+    icon.setAttribute('aria-label', 'click ou enter ajoute un like');
+
     rightSide.appendChild(like);
-    rightSide.appendChild(i);
+    rightSide.appendChild(likeLink);
+    likeLink.appendChild(icon);
+
     return article;
   }
-  return {getPortfolioCardDOM};
-    
+  return { getPortfolioCardDOM };
 }

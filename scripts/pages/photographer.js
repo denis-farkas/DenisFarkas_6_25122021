@@ -1,27 +1,28 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-undef */
+/* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+
+/* les factories principalement ont causé ces problémes, je désactive */
 
 /* fonction qui isole l'id dans l'url avec get */
-function getIdUser () {
+function getIdUser() {
   const parameterURL = new URLSearchParams(window.location.search);
-  const idUser = parseInt(parameterURL.get("id"), 10);
+  const idUser = parseInt(parameterURL.get('id'), 10);
   return idUser;
 }
 
-const idUser = getIdUser();   
+const idUser = getIdUser();
 
 /* concaténation de "portfolio" avec idUser pour nommer chaque portfolio dans localStorage */
 const idPortfolio = `portfolio${idUser}`;
- 
-/* lecture du JSON pour la liste de photographes */   
+
+/* lecture du JSON pour la liste de photographes */
 async function getUsers() {
-        
-  const response = await fetch("./data/photographers.json", {
-    headers : { 
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    }
+  const response = await fetch('./data/photographers.json', {
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
   });
   const users = await response.json();
   return users;
@@ -29,9 +30,10 @@ async function getUsers() {
 
 /* utilisation des factories pour charger la page */
 
-/* 1 - Header et structure de la page */ 
-function displayUser(oneUser){
-  const userMain = document.querySelector("main");
+/* 1 - Header et structure de la page */
+function displayUser(oneUser) {
+  const userMain = document.querySelector('main');
+  // eslint-disable-next-line no-undef
   const headerModel = headerFactory(oneUser);
   const userHeaderDOM = headerModel.getUserHeaderDOM();
   const userBodyDOM = headerModel.getUserBodyDOM();
@@ -41,28 +43,29 @@ function displayUser(oneUser){
   userBodyDOM.appendChild(portfolioSection);
 }
 
-/* 2 - Modale de contact */   
-function displayModalContact(oneUser){
-  const userBody =document.querySelector("body");
+/* 2 - Modale de contact */
+function displayModalContact(oneUser) {
+  const userBody = document.querySelector('body');
+  // eslint-disable-next-line no-undef
   const contactModel = modalContactFactory(oneUser);
   const userContactModalDOM = contactModel.getModalContactDOM();
   userBody.appendChild(userContactModalDOM);
 }
 
-/* 3 - Section Portfolio */ 
-function displayPortfolio(collection){
-  const portfolioBody = document.querySelector(".portfolio_body");
-  collection.forEach((item) =>{
+/* 3 - Section Portfolio */
+function displayPortfolio(collection) {
+  const portfolioBody = document.querySelector('.portfolio_body');
+  collection.forEach((item) => {
+    // eslint-disable-next-line no-undef
     const portfolioModel = portfolioItemFactory(item);
     const userPortfolioDOM = portfolioModel.getPortfolioCardDOM();
     portfolioBody.appendChild(userPortfolioDOM);
   });
-   
 }
 
 /* Extrait de users, le photographe à afficher. */
-function getOneUser(users, idUser){
-  const oneUser = users.photographers.find(item=>item.id===idUser);
+function getOneUser(users, idUser) {
+  const oneUser = users.photographers.find((item) => item.id === idUser);
   return oneUser;
 }
 
@@ -75,58 +78,59 @@ retrouver la collection de médias qui lui appartiennent.
 
 4 - Sinon, extrait portfolio de localStorage
 */
-function getPortfolio(users, idUser, idPortfolio){
-    
-  if(!localStorage.getItem(idPortfolio)){
-    const portfolio = users.media.filter(item=>item.photographerId===idUser);
-    
-    const indexedPortfolio = portfolio.map((item, index)=>({index, ...item}));
-        
+function getPortfolio(users, idUser, idPortfolio) {
+  if (!localStorage.getItem(idPortfolio)) {
+    const portfolio = users.media.filter(
+      (item) => item.photographerId === idUser
+    );
+
+    const indexedPortfolio = portfolio.map((item, index) => ({
+      index,
+      ...item,
+    }));
+
     localStorage.setItem(idPortfolio, JSON.stringify(indexedPortfolio));
   }
   const portfolio = JSON.parse(localStorage.getItem(idPortfolio));
-    
+
   return portfolio;
 }
 
 /* Structure de la modale ligthbox */
-function displayModalSection(){
-  const modal = document.querySelector(".lightbox_modal");
+function displayModalSection() {
+  const modal = document.querySelector('.lightbox_modal');
+  // eslint-disable-next-line no-undef
   const modalModel = modalMediaFactory();
   const modalSection = modalModel.getModalMediaDOM();
   modal.appendChild(modalSection);
 }
 
-
 /* Chargement des slides de la modale lightbox */
 function displayLightbox(portfolio) {
-  const modalSection = document.querySelector(".body_center");
+  const modalSection = document.querySelector('.body_center');
   portfolio.forEach((item) => {
+    // eslint-disable-next-line no-undef
     const modalMediaModel = modalMediaItemFactory(item);
     const mediaCardDOM = modalMediaModel.getMediaItemDOM();
     modalSection.appendChild(mediaCardDOM);
   });
 }
 
-
-
 /* calcule le totale de likes du portfolio */
-function totalLiked(portfolio){
-  let count=0;
-  portfolio.forEach((item) =>{
-    // eslint-disable-next-line operator-assignment
-    count = count + item.likes;
+function totalLiked(portfolio) {
+  let count = 0;
+  portfolio.forEach((item) => {
+    count += item.likes;
   });
-  const Total = document.getElementById("total");
+  const Total = document.getElementById('total');
   Total.textContent = count;
 }
 /* Chargement de la page et de ses fonctionnalités */
 
-async function init(idUser, idPortfolio){
-    
+async function init(idUser, idPortfolio) {
   const users = await getUsers();
   const oneUser = getOneUser(users, idUser);
-  localStorage.setItem("oneUser", JSON.stringify(oneUser));
+  localStorage.setItem('oneUser', JSON.stringify(oneUser));
   const portfolio = getPortfolio(users, idUser, idPortfolio);
   displayUser(oneUser);
   displayModalContact(oneUser);
@@ -134,210 +138,219 @@ async function init(idUser, idPortfolio){
   displayModalSection();
   displayLightbox(portfolio);
   totalLiked(portfolio);
-  const logo=document.querySelector(".logo");
+  const logo = document.querySelector('.logo');
   logo.focus();
 }
 
 init(idUser, idPortfolio);
 
-
-
-
 /* Ouverture, fermeture des modales */
 
-const contact = document.querySelector(".contact_modal");
-const lightbox = document.querySelector(".lightbox_modal");
-const userHeader = document.querySelector(".photograph");
-const userBody = document.querySelector(".photograph_body");
-const main = document.querySelector (".main");
+const contact = document.querySelector('.contact_modal');
+const lightbox = document.querySelector('.lightbox_modal');
+const userHeader = document.querySelector('.photograph');
+const userBody = document.querySelector('.photograph_body');
+const main = document.querySelector('.main');
 
-function closeContactModal(){
-  const contactBtn = document.getElementById("contacter");
+function closeContactModal() {
+  const contactBtn = document.getElementById('contacter');
 
-  // eslint-disable-next-line no-use-before-define
-  document.removeEventListener("keyup", checkCloseModal, false);            
+  document.removeEventListener('keyup', checkCloseModal, false);
   // enlever inert des childs
-  lightbox.inert =false;
-  userHeader.inert =false;
+  lightbox.inert = false;
+  userHeader.inert = false;
   main.inert = false;
-    
-  contact.style.display = "none";
-    
+
+  contact.style.display = 'none';
+
   contactBtn.focus();
 }
 
-function checkCloseModal(e){
-  if (e.key === "Escape"){
+function checkCloseModal(e) {
+  if (e.key === 'Escape') {
     closeContactModal();
   }
 }
 
-function displayContactModal(){
-  
+function displayContactModal() {
   lightbox.inert = true;
   userHeader.inert = true;
   main.inert = true;
-    
-  contact.style.display = "block";
-  document.addEventListener("keyup", checkCloseModal);
 
-  const form = document.querySelector("h2");
+  contact.style.display = 'block';
+  document.addEventListener('keyup', checkCloseModal);
+
+  const form = document.querySelector('h2');
   form.focus();
 }
 
-
 /* fonctions lightbox */
 
-//fonction open/close lightbox
+// fonction open/close lightbox
 
-function closeLightBox(){
-  const logo = document.getElementById("logo");
+function closeLightBox() {
+  const logo = document.getElementById('logo');
 
-  // eslint-disable-next-line no-use-before-define
-  document.removeEventListener("keydown", checkLightBox, false);            
+  document.removeEventListener('keydown', checkLightBox, false);
   // enlever inert des childs
-  contact.inert =false;
-  userHeader.inert =false;
+  contact.inert = false;
+  userHeader.inert = false;
   main.inert = false;
-    
-  lightbox.style.display = "none";
-    
+
+  lightbox.style.display = 'none';
+
   logo.focus();
 }
 
-
-
-function checkLightBox(e){
-  switch (e.keyCode) {
-  case 37:
-    plusSlides(-1);
-    break;
-  case 39:
-    plusSlides(1);
-    break;
-  case 27:
-    closeLightBox();
-    break;
+function checkOnKeyImg(e, index) {
+  if (e.keyCode === 13) {
+    currentSlide(index);
   }
-} 
+}
 
+function checkLightBox(e) {
+  switch (e.keyCode) {
+    case 37:
+      plusSlides(-1);
+      break;
+    case 39:
+      plusSlides(1);
+      break;
+    case 27:
+      closeLightBox();
+      break;
+    default:
+    // do nothing
+  }
+}
 
 // fonction show slides
 let slideIndex;
 
+// Next/previous controls
+function plusSlides(n) {
+  showSlides((slideIndex += n));
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides((slideIndex = n));
+}
+
 function showSlides(n) {
-  let i;
-  const slides = document.getElementsByClassName("slides");
-  if (n > slides.length-1) {slideIndex = 0;}
-  if (n < 0) {slideIndex = slides.length-1;}
+  let counter;
+  const slides = document.getElementsByClassName('slides');
+  if (n > slides.length - 1) {
+    slideIndex = 0;
+  }
+  if (n < 0) {
+    slideIndex = slides.length - 1;
+  }
+
   // eslint-disable-next-line no-plusplus
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+  for (counter = 0; counter < slides.length; counter++) {
+    slides[counter].style.display = 'none';
   }
 
   contact.inert = true;
   userHeader.inert = true;
   main.inert = true;
 
-  slides[slideIndex].style.display = "block";
-  lightbox.style.display="block";
-  document.addEventListener("keydown", checkLightBox);
-}
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
+  slides[slideIndex].style.display = 'block';
+  lightbox.style.display = 'block';
+  document.addEventListener('keydown', checkLightBox);
 }
 
 // fonction incrémente likes
+
+function checkOnKeyLiked(e, id) {
+  if (e.keyCode === 13) {
+    liked(id);
+  }
+}
+
 function liked(id) {
   const like = document.getElementById(id);
-  const total = document.getElementById("total");
+  const total = document.getElementById('total');
   const likes = Number(like.textContent);
   const totalLikes = Number(total.textContent);
-  const incrementLikes= likes + 1;
-  const incrementTotal= totalLikes +1;
+  const incrementLikes = likes + 1;
+  const incrementTotal = totalLikes + 1;
   like.textContent = incrementLikes.toString();
   total.textContent = incrementTotal.toString();
 }
 
 // fonction menu filtre
-function sortPopular( a, b ) {
-  if(a.likes > b.likes){
+function sortPopular(a, b) {
+  if (a.likes > b.likes) {
     return -1;
   }
-  if(a.likes < b.likes){
+  if (a.likes < b.likes) {
     return 1;
   }
-  return 0; 
+  return 0;
 }
 
-function sortRecent( a, b ) {
-  if(a.date > b.date){
+function sortRecent(a, b) {
+  if (a.date > b.date) {
     return -1;
   }
-  if(a.date < b.date){
+  if (a.date < b.date) {
     return 1;
   }
-  return 0; 
+  return 0;
 }
 
-function sortTitle( a, b ) {
-  if(a.title > b.title){
+function sortTitle(a, b) {
+  if (a.title > b.title) {
     return 1;
   }
-  if(a.title < b.title){
+  if (a.title < b.title) {
     return -1;
   }
-  return 0; 
+  return 0;
 }
-
 
 // Gestion des filtres selon option choisie.
-function sortFilter(value, portfolio){
-
-  if(value === "Popularité"){
+function sortFilter(value, portfolio) {
+  if (value === 'Popularité') {
     const filter = portfolio.sort(sortPopular);
     return filter;
   }
-  if(value === "Date"){
+  if (value === 'Date') {
     const filter = portfolio.sort(sortRecent);
     return filter;
   }
 
-  if(value === "Titre"){
+  if (value === 'Titre') {
     const filter = portfolio.sort(sortTitle);
     return filter;
   }
-    
+
   const filter = portfolio;
-  return filter; 
+  return filter;
 }
 
 // Application des filtres.
-function  changeFilter(value){
+
+function changeFilter(value) {
   const portfolio = JSON.parse(localStorage.getItem(idPortfolio));
-  const portfolioBody = document.querySelector(".portfolio_body");
+  const portfolioBody = document.querySelector('.portfolio_body');
 
   const filter = sortFilter(value, portfolio);
 
-  portfolioBody.innerHTML="";
+  portfolioBody.innerHTML = '';
   displayPortfolio(filter);
   displayLightbox(filter);
 }
 
-
 /* affiche en console les valeurs du formulaire  rempli lors du submit */
 
-function printInputValues(){
-  const inpFirst = document.getElementById("first");
-  const inpLast = document.getElementById("last");
-  const inpEmail = document.getElementById("email");
-  const inpMessage = document.getElementById("message");
-  console.log( inpFirst.value, inpLast.value, inpEmail.value, inpMessage.value);
+// eslint-disable-next-line no-unused-vars
+function printInputValues() {
+  const inpFirst = document.getElementById('first');
+  const inpLast = document.getElementById('last');
+  const inpEmail = document.getElementById('email');
+  const inpMessage = document.getElementById('message');
+  console.log(inpFirst.value, inpLast.value, inpEmail.value, inpMessage.value);
 }
