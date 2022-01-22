@@ -17,15 +17,22 @@ const idUser = getIdUser();
 const idPortfolio = `portfolio${idUser}`;
 
 /* lecture du JSON pour la liste de photographes */
+// eslint-disable-next-line consistent-return
 async function getUsers() {
-  const response = await fetch('./data/photographers.json', {
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  });
-  const users = await response.json();
-  return users;
+  try {
+    const response = await fetch('./data/photographers.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+
+    const users = await response.json();
+    return users;
+  } catch (err) {
+    // eslint-disable-next-line no-alert
+    alert('erreur systéme, le fichier json comporte des erreurs');
+  }
 }
 
 /* utilisation des factories pour charger la page */
@@ -128,18 +135,21 @@ function totalLiked(portfolio) {
 /* Chargement de la page et de ses fonctionnalités */
 
 async function init(idUser, idPortfolio) {
-  const users = await getUsers();
-  const oneUser = getOneUser(users, idUser);
-  localStorage.setItem('oneUser', JSON.stringify(oneUser));
-  const portfolio = getPortfolio(users, idUser, idPortfolio);
-  displayUser(oneUser);
-  displayModalContact(oneUser);
-  displayPortfolio(portfolio);
-  displayModalSection();
-  displayLightbox(portfolio);
-  totalLiked(portfolio);
-  const logo = document.querySelector('.logo');
-  logo.focus();
+  try {
+    const users = await getUsers();
+    const oneUser = getOneUser(users, idUser);
+    localStorage.setItem('oneUser', JSON.stringify(oneUser));
+    const portfolio = getPortfolio(users, idUser, idPortfolio);
+    displayUser(oneUser);
+    displayModalContact(oneUser);
+    displayPortfolio(portfolio);
+    displayModalSection();
+    displayLightbox(portfolio);
+    totalLiked(portfolio);
+  } catch (err) {
+    // eslint-disable-next-line no-alert
+    alert('erreur systéme, le fichier json comporte des erreurs');
+  }
 }
 
 init(idUser, idPortfolio);
@@ -188,8 +198,8 @@ function displayContactModal() {
 
 // fonction open/close lightbox
 
-function closeLightBox() {
-  const logo = document.getElementById('logo');
+function closeLightBox(index) {
+  const lastImage = document.getElementById(' $`{index}`');
 
   document.removeEventListener('keydown', checkLightBox, false);
   // enlever inert des childs
@@ -199,7 +209,7 @@ function closeLightBox() {
 
   lightbox.style.display = 'none';
 
-  logo.focus();
+  lastImage.focus();
 }
 
 function checkOnKeyImg(e, index) {
