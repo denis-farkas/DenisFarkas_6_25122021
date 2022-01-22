@@ -47,45 +47,55 @@ function headerFactory(data) {
     const body = document.createElement('div');
     body.className = 'photograph_body';
     main.appendChild(body);
+
     const badge = document.createElement('div');
     badge.className = 'badge';
     badge.setAttribute('role', 'status');
     badge.setAttribute('aria-label', 'statut du photographe');
     body.appendChild(badge);
+
     const badgeLeft = document.createElement('div');
     badgeLeft.className = 'badge-left';
     badge.appendChild(badgeLeft);
+
     const like = document.createElement('div');
     like.className = 'like';
     like.setAttribute('id', 'total');
     like.setAttribute('role', 'status');
-    const i = document.createElement('i');
-    i.className = 'fa fa-heart black';
-    i.setAttribute('onclick', 'Liked(total)');
+
+    const icon = document.createElement('i');
+    icon.className = 'fa fa-heart black';
+    icon.setAttribute('onclick', 'Liked(total)');
     badgeLeft.appendChild(like);
-    badgeLeft.appendChild(i);
+    badgeLeft.appendChild(icon);
+
     const badgeRight = document.createElement('div');
     badgeRight.className = 'badge-right';
     badge.appendChild(badgeRight);
+
     const span = document.createElement('span');
     span.className = 'price';
     span.setAttribute('role', 'status');
     span.setAttribute('aria-label', `${price}€ / jour`);
     span.textContent = `${price}€ / jour`;
     badgeRight.appendChild(span);
+
     return body;
   }
 
   function getPortfolioSectionDOM() {
     const section = document.createElement('section');
     section.className = 'portfolio_section';
+
     const portfolioHeader = document.createElement('div');
     portfolioHeader.className = 'portfolio_header';
+
     const portfolioBody = document.createElement('div');
     portfolioBody.className = 'portfolio_body';
     section.appendChild(portfolioHeader);
     section.appendChild(portfolioBody);
     main.appendChild(section);
+
     const label = document.createElement('span');
     label.textContent = 'Trier par';
     label.className = 'select-label';
@@ -95,29 +105,35 @@ function headerFactory(data) {
     menu.className = 'dropdown';
     menu.setAttribute('id', 'dropdown');
     portfolioHeader.appendChild(menu);
+
     const select = document.createElement('button');
     select.className = 'dropdown-toggle';
     select.textContent = 'Popularité';
     select.setAttribute('type', 'button');
     select.setAttribute('aria-haspopup', true);
     menu.appendChild(select);
+
     const listbox = document.createElement('ul');
     listbox.className = 'dropdown-menu';
     listbox.setAttribute('role', 'listbox');
     listbox.setAttribute('aria-expanded', false);
     menu.appendChild(listbox);
+
     const filtrePopular = document.createElement('li');
     filtrePopular.setAttribute('role', 'option');
     filtrePopular.setAttribute('tabindex', '0');
     filtrePopular.textContent = 'Popularité';
+
     const filtreDate = document.createElement('li');
     filtreDate.setAttribute('role', 'option');
     filtreDate.setAttribute('tabindex', '0');
     filtreDate.textContent = 'Date';
+
     const filtreTitre = document.createElement('li');
     filtreTitre.setAttribute('role', 'option');
     filtreTitre.setAttribute('tabindex', '0');
     filtreTitre.textContent = 'Titre';
+
     listbox.appendChild(filtrePopular);
     listbox.appendChild(filtreDate);
     listbox.appendChild(filtreTitre);
