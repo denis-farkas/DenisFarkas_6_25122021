@@ -1,7 +1,22 @@
-@media (max-width: 1200px) {
+@media (max-width: 1366px) {
   html {
-    font-size: 95%;
+    font-size: 90%;
   }
+
+  .photographer_section {
+    display: inline-grid;
+    grid-template-columns: 24rem 24rem 24rem;
+    column-gap: 3.3rem;
+    margin-top: 4rem;
+    margin-left: 2.5rem;
+    padding-top: 1.5rem;
+    row-gap: 2rem;
+  }
+
+  .center {
+    width: 100vw;
+  }
+
 }
 
 body {
@@ -131,7 +146,7 @@ h1 {
 
 .contact-button {
   font-size: 1.25rem;
-  font-weight: bold;
+  font-weight: normal;
   color: white;
   padding: 0.68rem;
   width: 10.62rem;
@@ -394,7 +409,7 @@ form textarea {
 
 .submit-button {
   font-size: 1.25rem;
-  font-weight: bold;
+  font-weight: normal;
   color: white;
   padding: 0.68rem;
   width: 10.62rem;
@@ -493,7 +508,7 @@ form textarea {
   top: 12%;
 }
 
-.dropdown .dropdown-menu > li {
+.dropdown .dropdown-menu>li {
   display: block;
   align-items: center;
   padding: 1.25rem 0.75rem;
@@ -506,8 +521,8 @@ form textarea {
   border-bottom: 0.06rem solid #fff;
 }
 
-.dropdown .dropdown-menu > li:hover,
-.dropdown .dropdown-menu > li:focus {
+.dropdown .dropdown-menu>li:hover,
+.dropdown .dropdown-menu>li:focus {
   outline: none;
   border-radius: 0.19rem;
   background: #db8876;
