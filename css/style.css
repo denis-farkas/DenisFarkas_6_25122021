@@ -1,18 +1,38 @@
-@import url("photographer.css");
+@import url('photographer.css');
 
-.center{
-  width:80vw;
+.center {
+  width: 80vw;
   margin: 0 auto;
 }
 
 .photographer_section {
   display: inline-grid;
   grid-template-columns: 24rem 24rem 24rem;
-  column-gap:8.3rem;
+  column-gap: 8.3rem;
   margin-top: 4rem;
-  margin-left:4.5rem;
-  padding-top:1.5rem;
+  margin-left: 4.5rem;
+  padding-top: 1.5rem;
   row-gap: 4.8rem;
+}
+
+@media (max-width: 1420px) {
+  html {
+    font-size: 90%;
+  }
+
+  .photographer_section {
+    display: inline-grid;
+    grid-template-columns: 24vw 24vw 24vw;
+    column-gap: 3.3rem;
+    margin-top: 4rem;
+    margin-left: 2.5rem;
+    padding-top: 1.5rem;
+    row-gap: 2rem;
+  }
+
+  .center {
+    width: 100vw;
+  }
 }
 
 .photographer_section article {
@@ -71,6 +91,6 @@
   left: 0;
   z-index: 1;
   pointer-events: auto;
-  content: "";
+  content: '';
   background-color: rgba(0, 0, 0, 0);
 }
