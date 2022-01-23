@@ -92,6 +92,7 @@ function headerFactory(data) {
 
     const portfolioBody = document.createElement('div');
     portfolioBody.className = 'portfolio_body';
+    portfolioBody.setAttribute('id', 'portFBody');
     section.appendChild(portfolioHeader);
     section.appendChild(portfolioBody);
     main.appendChild(section);

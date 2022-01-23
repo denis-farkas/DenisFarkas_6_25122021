@@ -438,7 +438,7 @@ form textarea {
 }
 
 .dropdown .dropdown-toggle:focus {
-  outline: 2px solid #8cc63f;
+  outline: 2px solid #901c1c;
 }
 
 .dropdown .dropdown-toggle:before {

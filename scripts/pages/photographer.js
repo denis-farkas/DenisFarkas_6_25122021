@@ -198,9 +198,7 @@ function displayContactModal() {
 
 // fonction open/close lightbox
 
-function closeLightBox(index) {
-  const lastImage = document.getElementById(' $`{index}`');
-
+function closeLightBox() {
   document.removeEventListener('keydown', checkLightBox, false);
   // enlever inert des childs
   contact.inert = false;
@@ -208,8 +206,6 @@ function closeLightBox(index) {
   main.inert = false;
 
   lightbox.style.display = 'none';
-
-  lastImage.focus();
 }
 
 function checkOnKeyImg(e, index) {
@@ -272,12 +268,6 @@ function showSlides(n) {
 }
 
 // fonction incrémente likes
-
-function checkOnKeyLiked(e, id) {
-  if (e.keyCode === 13) {
-    liked(id);
-  }
-}
 
 function liked(id) {
   const like = document.getElementById(id);

@@ -5,6 +5,7 @@ function portfolioItemFactory(data) {
   function getPortfolioCardDOM() {
     const article = document.createElement('article');
     article.setAttribute('role', 'article');
+    article.setAttribute('id', `article${id}`);
     article.setAttribute(
       'aria-label',
       `image numéro ${id} titre ${title} avec ${likes} likes`
@@ -53,29 +54,27 @@ function portfolioItemFactory(data) {
     const like = document.createElement('div');
     like.className = 'likes';
     like.textContent = `${likes}`;
-    like.setAttribute('role', 'timer');
     like.setAttribute('aria-label', `Total de j'aime ${likes}`);
     like.setAttribute('id', `${id}`);
 
-    const likeLink = document.createElement('a');
-    likeLink.setAttribute('role', 'timer');
-    likeLink.setAttribute('href', `#lightLink${id}`);
-    likeLink.setAttribute('onkeydown', `checkOnKeyLiked(${id})`);
-    likeLink.setAttribute('onclick', `liked(${id})`);
-    likeLink.setAttribute(
+    const likeZone = document.createElement('span');
+    likeZone.setAttribute('onkeyup', `checkOnKeyLiked(${id})`);
+    likeZone.setAttribute(
       'aria-label',
       `augmenter le total de like qui est ${likes}`
     );
-    likeLink.setAttribute('tabindex', '0');
+    likeZone.setAttribute('tabindex', '0');
 
     const icon = document.createElement('i');
     icon.className = 'fa fa-heart';
     icon.setAttribute('role', 'img');
-    icon.setAttribute('aria-label', 'click ou enter ajoute un like');
+    icon.setAttribute('tabindex', '0');
+    icon.setAttribute('aria-label', 'clicker ou enter ajoute un like');
+    icon.setAttribute('onclick', `liked(${id})`);
+    icon.setAttribute('onkeypress', `liked(${id})`);
 
     rightSide.appendChild(like);
-    rightSide.appendChild(likeLink);
-    likeLink.appendChild(icon);
+    rightSide.appendChild(icon);
 
     return article;
   }
