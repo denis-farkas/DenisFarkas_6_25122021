@@ -4,17 +4,22 @@
 
 /* les factories principalement ont causé ces problémes, je désactive */
 
+const contact = document.querySelector('.contact_modal');
+const lightbox = document.querySelector('.lightbox_modal');
+const userHeader = document.querySelector('.photograph');
+const userBody = document.querySelector('.photograph_body');
+const main = document.querySelector('.main');
+const idUser = getIdUser();
+
+/* concaténation de "portfolio" avec idUser pour nommer chaque portfolio dans localStorage */
+const idPortfolio = `portfolio${idUser}`;
+
 /* fonction qui isole l'id dans l'url avec get */
 function getIdUser() {
   const parameterURL = new URLSearchParams(window.location.search);
   const idUser = parseInt(parameterURL.get('id'), 10);
   return idUser;
 }
-
-const idUser = getIdUser();
-
-/* concaténation de "portfolio" avec idUser pour nommer chaque portfolio dans localStorage */
-const idPortfolio = `portfolio${idUser}`;
 
 /* lecture du JSON pour la liste de photographes */
 // eslint-disable-next-line consistent-return
@@ -155,12 +160,6 @@ async function init(idUser, idPortfolio) {
 init(idUser, idPortfolio);
 
 /* Ouverture, fermeture des modales */
-
-const contact = document.querySelector('.contact_modal');
-const lightbox = document.querySelector('.lightbox_modal');
-const userHeader = document.querySelector('.photograph');
-const userBody = document.querySelector('.photograph_body');
-const main = document.querySelector('.main');
 
 function closeContactModal() {
   const contactBtn = document.getElementById('contacter');

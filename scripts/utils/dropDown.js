@@ -63,6 +63,8 @@ document.addEventListener('readystatechange', (event) => {
         } else if (e.keyCode === 13 || e.keyCode === 32) {
           // enter or spacebar key
           this.toggle(true);
+        } else if (e.keyCode === 9) {
+          this.toggle(false);
         }
       };
 

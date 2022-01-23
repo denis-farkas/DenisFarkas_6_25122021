@@ -24,14 +24,13 @@ function portfolioItemFactory(data) {
     if (image) {
       const img = document.createElement('img');
       img.setAttribute('src', `assets/media/${image}`);
-      img.setAttribute('alt', `${title}`);
+      img.setAttribute('aria-label', `photographie intitulée ${title}`);
       img.setAttribute('role', 'img');
       lightBoxLink.appendChild(img);
     } else if (video) {
       const vid = document.createElement('video');
       vid.setAttribute('src', `assets/media/${video}`);
       vid.setAttribute('aria-label', `vidéo ${title}`);
-      vid.setAttribute('autoplay', false);
       lightBoxLink.appendChild(vid);
     } else {
       const img = document.createElement('img');
@@ -54,7 +53,6 @@ function portfolioItemFactory(data) {
     const like = document.createElement('div');
     like.className = 'likes';
     like.textContent = `${likes}`;
-    like.setAttribute('aria-label', `Total de j'aime ${likes}`);
     like.setAttribute('id', `${id}`);
 
     const likeZone = document.createElement('span');
