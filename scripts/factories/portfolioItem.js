@@ -30,7 +30,7 @@ function portfolioItemFactory(data) {
     } else if (video) {
       const vid = document.createElement('video');
       vid.setAttribute('src', `assets/media/${video}`);
-      vid.setAttribute('aria-label', `vidéo ${title}`);
+      vid.setAttribute('aria-label', `vidéo intitulée ${title}`);
       lightBoxLink.appendChild(vid);
     } else {
       const img = document.createElement('img');
