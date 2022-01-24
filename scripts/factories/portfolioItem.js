@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 function portfolioItemFactory(data) {
-  const { index, id, title, image, video, likes } = data;
+  const { index, id, title, altText, image, video, likes } = data;
 
   function getPortfolioCardDOM() {
     const article = document.createElement('article');
@@ -24,13 +24,13 @@ function portfolioItemFactory(data) {
     if (image) {
       const img = document.createElement('img');
       img.setAttribute('src', `assets/media/${image}`);
-      img.setAttribute('aria-label', `photographie intitulée ${title}`);
+      img.setAttribute('aria-label', `${altText}`);
       img.setAttribute('role', 'img');
       lightBoxLink.appendChild(img);
     } else if (video) {
       const vid = document.createElement('video');
       vid.setAttribute('src', `assets/media/${video}`);
-      vid.setAttribute('aria-label', `vidéo intitulée ${title}`);
+      vid.setAttribute('aria-label', `${altText}`);
       lightBoxLink.appendChild(vid);
     } else {
       const img = document.createElement('img');

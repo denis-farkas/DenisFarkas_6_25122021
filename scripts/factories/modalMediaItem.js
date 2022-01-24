@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 function modalMediaItemFactory(data) {
-  const { title, image, video } = data;
+  const { title, altText, image, video } = data;
 
   function getMediaItemDOM() {
     const media = document.createElement('div');
@@ -10,7 +10,7 @@ function modalMediaItemFactory(data) {
       const imgMedia = document.createElement('img');
       imgMedia.setAttribute('src', `assets/media/${image}`);
       imgMedia.setAttribute('role', 'image');
-      imgMedia.setAttribute('alt', `${title}`);
+      imgMedia.setAttribute('alt', `${altText}`);
       media.appendChild(imgMedia);
     } else if (video) {
       const videoMedia = document.createElement('video');

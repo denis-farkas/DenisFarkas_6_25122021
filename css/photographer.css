@@ -18,6 +18,10 @@ a {
   text-decoration: none;
 }
 
+a:focus {
+  outline: 1px solid black;
+}
+
 header .photograph {
   display: flex;
   justify-content: left;
