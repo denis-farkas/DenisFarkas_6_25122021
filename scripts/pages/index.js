@@ -13,9 +13,8 @@ async function getUsers() {
 
     const users = await response.json();
     return users;
-  } catch (err) {
-    // eslint-disable-next-line no-alert
-    alert('erreur systéme, le fichier json comporte des erreurs');
+  } catch (error) {
+    console.error(error);
   }
 }
 

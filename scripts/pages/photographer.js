@@ -36,7 +36,7 @@ async function getUsers() {
     return users;
   } catch (err) {
     // eslint-disable-next-line no-alert
-    alert('erreur systéme, le fichier json comporte des erreurs');
+    console.error(err);
   }
 }
 
@@ -111,6 +111,7 @@ function getPortfolio(users, idUser, idPortfolio) {
 /* Structure de la modale ligthbox */
 function displayModalSection() {
   const modal = document.querySelector('.lightbox_modal');
+
   // eslint-disable-next-line no-undef
   const modalModel = modalMediaFactory();
   const modalSection = modalModel.getModalMediaDOM();
@@ -120,6 +121,7 @@ function displayModalSection() {
 /* Chargement des slides de la modale lightbox */
 function displayLightbox(portfolio) {
   const modalSection = document.querySelector('.body_center');
+
   portfolio.forEach((item) => {
     // eslint-disable-next-line no-undef
     const modalMediaModel = modalMediaItemFactory(item);
@@ -131,12 +133,15 @@ function displayLightbox(portfolio) {
 /* calcule le totale de likes du portfolio */
 function totalLiked(portfolio) {
   let count = 0;
+  const Total = document.getElementById('total');
+
   portfolio.forEach((item) => {
     count += item.likes;
   });
-  const Total = document.getElementById('total');
+
   Total.textContent = count;
 }
+
 /* Chargement de la page et de ses fonctionnalités */
 
 async function init(idUser, idPortfolio) {
@@ -152,8 +157,7 @@ async function init(idUser, idPortfolio) {
     displayLightbox(portfolio);
     totalLiked(portfolio);
   } catch (err) {
-    // eslint-disable-next-line no-alert
-    alert('erreur systéme, le fichier json comporte des erreurs');
+    console.error(err);
   }
 }
 
