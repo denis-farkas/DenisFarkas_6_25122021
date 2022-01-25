@@ -267,6 +267,7 @@ function showSlides(n) {
 
   slides[slideIndex].style.display = 'block';
   lightbox.style.display = 'block';
+
   document.addEventListener('keydown', checkLightBox);
 }
 

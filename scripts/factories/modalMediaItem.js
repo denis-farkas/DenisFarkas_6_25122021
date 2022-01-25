@@ -10,12 +10,14 @@ function modalMediaItemFactory(data) {
       const imgMedia = document.createElement('img');
       imgMedia.setAttribute('src', `assets/media/${image}`);
       imgMedia.setAttribute('role', 'image');
+      imgMedia.setAttribute('tabindex', '1');
       imgMedia.setAttribute('alt', `${altText}`);
       media.appendChild(imgMedia);
     } else if (video) {
       const videoMedia = document.createElement('video');
       videoMedia.setAttribute('src', `assets/media/${video}`);
       videoMedia.setAttribute('role', 'video');
+      videoMedia.setAttribute('tabindex', '1');
       videoMedia.setAttribute('autoplay', 'true');
       videoMedia.setAttribute('loop', 'true');
       media.appendChild(videoMedia);

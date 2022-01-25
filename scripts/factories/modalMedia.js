@@ -2,8 +2,8 @@
 function modalMediaFactory() {
   function getModalMediaDOM() {
     const modal = document.createElement('div');
+    modal.setAttribute('role', 'document');
     modal.className = 'media_modal';
-    modal.setAttribute('aria-modal', 'true');
 
     const content = document.createElement('div');
     content.className = 'row';
@@ -17,7 +17,7 @@ function modalMediaFactory() {
     imgLeft.setAttribute('src', 'assets/icons/chevron-left-solid.svg');
     imgLeft.setAttribute('onclick', 'plusSlides(-1)');
     imgLeft.className = 'img_aside';
-    imgLeft.setAttribute('aria-label', 'image précédente');
+    imgLeft.setAttribute('alt', 'image précédente');
     asideLeft.appendChild(imgLeft);
 
     const center = document.createElement('div');
@@ -35,7 +35,7 @@ function modalMediaFactory() {
     const img = document.createElement('img');
     img.setAttribute('src', 'assets/icons/close-black.svg');
     img.setAttribute('onclick', 'closeLightBox()');
-    img.setAttribute('aria-label', 'fermer le slide avec la touche escape');
+    img.setAttribute('alt', 'fermer le slide avec la touche escape');
     img.className = 'closer';
     header.appendChild(img);
 
@@ -47,7 +47,7 @@ function modalMediaFactory() {
     imgRight.setAttribute('src', 'assets/icons/chevron-right-solid.svg');
     imgRight.setAttribute('onclick', 'plusSlides(1)');
     imgRight.className = 'img_aside';
-    imgRight.setAttribute('aria-label', 'image suivante');
+    imgRight.setAttribute('alt', 'image suivante');
     body.appendChild(imgRight);
 
     return modal;
