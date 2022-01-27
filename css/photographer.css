@@ -54,7 +54,7 @@ header .prop-center {
 h1 {
   color: #901c1c;
   font-size: 2.25rem;
-  font-weight: regular;
+  font-weight: normal;
   padding-right: 0.5rem;
 }
 
@@ -86,7 +86,7 @@ h1 {
   padding: 1.25rem;
   width: 10.62rem;
   font-size: 1.5rem;
-  font-weight: medium;
+  font-weight: 600;
 }
 
 .badge-right {
@@ -94,7 +94,7 @@ h1 {
   padding: 1.25rem;
   width: 10.62rem;
   font-size: 1.5rem;
-  font-weight: medium;
+  font-weight: 600;
 }
 
 .photograph_header {
@@ -117,7 +117,7 @@ h1 {
 .photograph_header_left h1 {
   color: #d3573c;
   font-size: 4rem;
-  font-weight: regular;
+  font-weight: normal;
   margin-block-start: 0;
   margin-block-end: 0;
 }
