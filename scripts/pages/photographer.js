@@ -6,9 +6,10 @@
 
 const contact = document.querySelector('.contact_modal');
 const lightbox = document.querySelector('.lightbox_modal');
-const userHeader = document.querySelector('.photograph');
+const userHeader = document.querySelector('.photograph_header');
 const userBody = document.querySelector('.photograph_body');
-const main = document.querySelector('.main');
+const main = document.querySelector('main');
+const header = document.querySelector('header');
 const idUser = getIdUser();
 
 /* concaténation de "portfolio" avec idUser pour nommer chaque portfolio dans localStorage */
@@ -44,15 +45,14 @@ async function getUsers() {
 
 /* 1 - Header et structure de la page */
 function displayUser(oneUser) {
-  const userMain = document.querySelector('main');
+  const body = document.querySelector('main');
+  const userMain = document.querySelector('.photograph_section');
   // eslint-disable-next-line no-undef
   const headerModel = headerFactory(oneUser);
   const userHeaderDOM = headerModel.getUserHeaderDOM();
-  const userBodyDOM = headerModel.getUserBodyDOM();
-  const portfolioSection = headerModel.getPortfolioSectionDOM();
+  const userBadgeDOM = headerModel.getBadgeDOM();
   userMain.appendChild(userHeaderDOM);
-  userMain.appendChild(userBodyDOM);
-  userBodyDOM.appendChild(portfolioSection);
+  body.appendChild(userBadgeDOM);
 }
 
 /* 2 - Modale de contact */
@@ -171,7 +171,7 @@ function closeContactModal() {
   document.removeEventListener('keyup', checkCloseModal, false);
   // enlever inert des childs
   lightbox.inert = false;
-  userHeader.inert = false;
+  header.inert = false;
   main.inert = false;
 
   contact.style.display = 'none';
@@ -187,7 +187,7 @@ function checkCloseModal(e) {
 
 function displayContactModal() {
   lightbox.inert = true;
-  userHeader.inert = true;
+  header.inert = true;
   main.inert = true;
 
   contact.style.display = 'block';
@@ -267,7 +267,6 @@ function showSlides(n) {
 
   slides[slideIndex].style.display = 'block';
   lightbox.style.display = 'block';
-
   document.addEventListener('keydown', checkLightBox);
 }
 

@@ -168,8 +168,8 @@ h1 {
 }
 
 .portfolio_section {
-  /*background-color: white;*/
-  margin: 0.7rem 0.7rem;
+  background-color: white;
+  margin: 0.7rem auto;
   padding-bottom: 5rem;
   width: 69.5vw;
 }

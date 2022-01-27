@@ -1,15 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 function headerFactory(data) {
   const { name, portrait, city, country, tagline, price } = data;
-  const main = document.querySelector('main');
   const picture = `assets/photographers/${portrait}`;
 
   function getUserHeaderDOM() {
-    const header = document.createElement('div');
-    header.className = 'photograph_header';
-    header.setAttribute('role', 'article');
-    header.setAttribute('aria-label', `Portfolio du photographe ${name}`);
-    main.appendChild(header);
+    const header = document.querySelector('.photograph_header');
     const headerLeft = document.createElement('div');
     headerLeft.className = 'photograph_header_left';
     const title = document.createElement('h1');
@@ -43,16 +38,11 @@ function headerFactory(data) {
     return header;
   }
 
-  function getUserBodyDOM() {
-    const body = document.createElement('div');
-    body.className = 'photograph_body';
-    main.appendChild(body);
-
+  function getBadgeDOM() {
     const badge = document.createElement('div');
     badge.className = 'badge';
     badge.setAttribute('role', 'status');
     badge.setAttribute('aria-label', 'statut du photographe');
-    body.appendChild(badge);
 
     const badgeLeft = document.createElement('div');
     badgeLeft.className = 'badge-left';
@@ -80,66 +70,8 @@ function headerFactory(data) {
     span.textContent = `${price}€ / jour`;
     badgeRight.appendChild(span);
 
-    return body;
+    return badge;
   }
 
-  function getPortfolioSectionDOM() {
-    const section = document.createElement('section');
-    section.className = 'portfolio_section';
-
-    const portfolioHeader = document.createElement('div');
-    portfolioHeader.className = 'portfolio_header';
-
-    const portfolioBody = document.createElement('div');
-    portfolioBody.className = 'portfolio_body';
-    portfolioBody.setAttribute('id', 'portFBody');
-    section.appendChild(portfolioHeader);
-    section.appendChild(portfolioBody);
-    main.appendChild(section);
-
-    const label = document.createElement('span');
-    label.textContent = 'Trier par';
-    label.className = 'select-label';
-    portfolioHeader.appendChild(label);
-
-    const menu = document.createElement('div');
-    menu.className = 'dropdown';
-    menu.setAttribute('id', 'dropdown');
-    portfolioHeader.appendChild(menu);
-
-    const select = document.createElement('button');
-    select.className = 'dropdown-toggle';
-    select.textContent = 'Popularité';
-    select.setAttribute('type', 'button');
-    select.setAttribute('aria-haspopup', true);
-    menu.appendChild(select);
-
-    const listbox = document.createElement('ul');
-    listbox.className = 'dropdown-menu';
-    listbox.setAttribute('role', 'listbox');
-    listbox.setAttribute('aria-expanded', false);
-    menu.appendChild(listbox);
-
-    const filtrePopular = document.createElement('li');
-    filtrePopular.setAttribute('role', 'option');
-    filtrePopular.setAttribute('tabindex', '0');
-    filtrePopular.textContent = 'Popularité';
-
-    const filtreDate = document.createElement('li');
-    filtreDate.setAttribute('role', 'option');
-    filtreDate.setAttribute('tabindex', '0');
-    filtreDate.textContent = 'Date';
-
-    const filtreTitre = document.createElement('li');
-    filtreTitre.setAttribute('role', 'option');
-    filtreTitre.setAttribute('tabindex', '0');
-    filtreTitre.textContent = 'Titre';
-
-    listbox.appendChild(filtrePopular);
-    listbox.appendChild(filtreDate);
-    listbox.appendChild(filtreTitre);
-
-    return section;
-  }
-  return { getUserHeaderDOM, getUserBodyDOM, getPortfolioSectionDOM };
+  return { getUserHeaderDOM, getBadgeDOM };
 }
