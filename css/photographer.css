@@ -231,6 +231,7 @@ article .row .right-side {
 .fa-heart {
   color: #901c1c;
   font-size: 1.12rem;
+  cursor: pointer;
 }
 
 .black {

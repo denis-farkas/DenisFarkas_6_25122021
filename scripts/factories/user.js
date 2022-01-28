@@ -15,38 +15,33 @@ function userFactory(data) {
     img.setAttribute('src', picture);
     img.setAttribute('alt', 'portrait du photographe');
 
-    const nom = document.createElement('h2');
+    const h2 = document.createElement('h2');
+    h2.textContent = name;
+    h2.setAttribute('aria-label', `${name}`);
 
-    nom.textContent = name;
-    nom.setAttribute('aria-label', `${name}`);
+    const h3 = document.createElement('h3');
+    h3.setAttribute('aria-label', `localisation ${city}, ${country}`);
+    h3.textContent = `${city}, ${country}`;
 
-    const adress = document.createElement('h3');
+    const p = document.createElement('p');
+    p.className = 'subTitle';
+    p.textContent = tagline;
 
-    adress.setAttribute('aria-label', `localisation ${city}, ${country}`);
-    adress.textContent = `${city}, ${country}`;
+    const span = document.createElement('span');
+    span.className = 'price';
+    span.textContent = `${price}€/jour`;
 
-    const devise = document.createElement('p');
+    const link = document.createElement('a');
+    link.setAttribute('role', 'link');
+    link.setAttribute('href', `photographer.html?id=${id}`);
+    link.setAttribute('aria-label', `visiter la page de ${name}`);
 
-    devise.className = 'subTitle';
-    devise.textContent = tagline;
-
-    const prix = document.createElement('span');
-
-    prix.className = 'price';
-    prix.textContent = `${price}€/jour`;
-
-    const lien = document.createElement('a');
-
-    lien.setAttribute('role', 'link');
-    lien.setAttribute('href', `photographer.html?id=${id}`);
-    lien.setAttribute('aria-label', `visiter la page de ${name}`);
-
-    article.appendChild(lien);
-    lien.appendChild(img);
-    lien.appendChild(nom);
-    article.appendChild(adress);
-    article.appendChild(devise);
-    article.appendChild(prix);
+    article.appendChild(link);
+    link.appendChild(img);
+    link.appendChild(h2);
+    article.appendChild(h3);
+    article.appendChild(p);
+    article.appendChild(span);
 
     return article;
   }

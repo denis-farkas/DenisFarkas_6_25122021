@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 function modalMediaItemFactory(data) {
-  const { title, altText, image, video } = data;
+  const { title, image, video } = data;
 
   function getMediaItemDOM() {
     const media = document.createElement('div');
@@ -11,7 +11,7 @@ function modalMediaItemFactory(data) {
       imgMedia.setAttribute('src', `assets/media/${image}`);
       imgMedia.setAttribute('role', 'image');
       imgMedia.setAttribute('tabindex', '1');
-      imgMedia.setAttribute('alt', `${altText}`);
+      imgMedia.setAttribute('alt', `${title}`);
       media.appendChild(imgMedia);
     } else if (video) {
       const videoMedia = document.createElement('video');
@@ -21,6 +21,9 @@ function modalMediaItemFactory(data) {
       videoMedia.setAttribute('autoplay', 'true');
       videoMedia.setAttribute('loop', 'true');
       media.appendChild(videoMedia);
+    } else {
+      const img = document.createElement('img');
+      img.setAttribute('src', 'assets/media/imageneutre.jpg');
     }
 
     const description = document.createElement('div');

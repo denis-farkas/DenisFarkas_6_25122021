@@ -5,21 +5,27 @@ function headerFactory(data) {
 
   function getUserHeaderDOM() {
     const header = document.querySelector('.photograph_header');
+
     const headerLeft = document.createElement('div');
     headerLeft.className = 'photograph_header_left';
+
     const title = document.createElement('h1');
     title.textContent = name;
     title.setAttribute('role', 'heading');
     title.setAttribute('aria-label', `photographe ${name}`);
+
     const origin = document.createElement('div');
     origin.className = 'origin';
     origin.textContent = `${city}, ${country}`;
+
     const subtitle = document.createElement('div');
     subtitle.className = 'subtitle';
     subtitle.textContent = tagline;
+
     headerLeft.appendChild(title);
     headerLeft.appendChild(origin);
     headerLeft.appendChild(subtitle);
+
     const btn = document.createElement('button');
     btn.className = 'contact-button';
     btn.setAttribute('id', 'contacter');
@@ -27,11 +33,13 @@ function headerFactory(data) {
     btn.textContent = 'Contactez-moi';
     btn.setAttribute('role', 'link');
     btn.setAttribute('aria-label', 'contactez moi');
+
     const img = document.createElement('img');
     img.setAttribute('src', picture);
     img.setAttribute('alt', `${name}`);
     img.setAttribute('role', 'img');
     img.setAttribute('aria-label', 'portrait');
+
     header.appendChild(headerLeft);
     header.appendChild(btn);
     header.appendChild(img);

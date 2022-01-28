@@ -31,77 +31,77 @@ function modalContactFactory(data) {
     const form = document.createElement('form');
     form.setAttribute(
       'onsubmit',
-      ' event.preventDefault(); printInputValues();  closeModal();'
+      ' event.preventDefault(); printInputValues();  closeContactModal();'
     );
     modal.appendChild(form);
 
-    const divFirst = document.createElement('div');
+    const firstElement = document.createElement('div');
 
     const labelFirst = document.createElement('label');
     labelFirst.setAttribute('for', 'first');
     labelFirst.textContent = 'Prénom';
 
-    const inpFirst = document.createElement('input');
-    inpFirst.setAttribute('id', 'first');
-    inpFirst.setAttribute('type', 'text');
-    inpFirst.setAttribute('name', 'firstname');
-    inpFirst.required = true;
+    const inputFirst = document.createElement('input');
+    inputFirst.setAttribute('id', 'first');
+    inputFirst.setAttribute('type', 'text');
+    inputFirst.setAttribute('name', 'firstname');
+    inputFirst.required = true;
 
-    form.appendChild(divFirst);
-    divFirst.appendChild(labelFirst);
-    divFirst.appendChild(inpFirst);
+    form.appendChild(firstElement);
+    firstElement.appendChild(labelFirst);
+    firstElement.appendChild(inputFirst);
 
-    const divLast = document.createElement('div');
+    const lastElement = document.createElement('div');
 
     const labelLast = document.createElement('label');
     labelLast.setAttribute('for', 'last');
     labelLast.textContent = 'Nom';
 
-    const inpLast = document.createElement('input');
-    inpLast.setAttribute('id', 'last');
-    inpLast.setAttribute('type', 'text');
-    inpLast.setAttribute('name', 'lastname');
-    inpLast.required = true;
+    const inputLast = document.createElement('input');
+    inputLast.setAttribute('id', 'last');
+    inputLast.setAttribute('type', 'text');
+    inputLast.setAttribute('name', 'lastname');
+    inputLast.required = true;
 
-    form.appendChild(divLast);
-    divLast.appendChild(labelLast);
-    divLast.appendChild(inpLast);
+    form.appendChild(lastElement);
+    lastElement.appendChild(labelLast);
+    lastElement.appendChild(inputLast);
 
-    const divEmail = document.createElement('div');
+    const emailElement = document.createElement('div');
 
     const labelEmail = document.createElement('label');
     labelEmail.setAttribute('for', 'email');
     labelEmail.textContent = 'Email';
 
-    const inpEmail = document.createElement('input');
-    inpEmail.setAttribute('id', 'email');
-    inpEmail.setAttribute('type', 'email');
-    inpEmail.setAttribute('name', 'email');
-    inpEmail.required = true;
+    const inputEmail = document.createElement('input');
+    inputEmail.setAttribute('id', 'email');
+    inputEmail.setAttribute('type', 'email');
+    inputEmail.setAttribute('name', 'email');
+    inputEmail.required = true;
 
-    form.appendChild(divEmail);
-    divEmail.appendChild(labelEmail);
-    divEmail.appendChild(inpEmail);
+    form.appendChild(emailElement);
+    emailElement.appendChild(labelEmail);
+    emailElement.appendChild(inputEmail);
 
-    const divMessage = document.createElement('div');
+    const messageElement = document.createElement('div');
 
     const labelMessage = document.createElement('label');
     labelMessage.setAttribute('for', 'message');
     labelMessage.textContent = 'Votre Message';
 
-    const inpMessage = document.createElement('textarea');
-    inpMessage.setAttribute('id', 'message');
-    inpMessage.setAttribute('name', 'message');
-    inpMessage.required = true;
+    const inputMessage = document.createElement('textarea');
+    inputMessage.setAttribute('id', 'message');
+    inputMessage.setAttribute('name', 'message');
+    inputMessage.required = true;
 
-    form.appendChild(divMessage);
-    divMessage.appendChild(labelMessage);
-    divMessage.appendChild(inpMessage);
+    form.appendChild(messageElement);
+    messageElement.appendChild(labelMessage);
+    messageElement.appendChild(inputMessage);
 
-    const inpId = document.createElement('input');
-    inpId.setAttribute('type', 'hidden');
-    inpId.setAttribute('value', `${id}`);
-    form.appendChild(inpId);
+    const inputId = document.createElement('input');
+    inputId.setAttribute('type', 'hidden');
+    inputId.setAttribute('value', `${id}`);
+    form.appendChild(inputId);
 
     const sendButton = document.createElement('button');
     sendButton.textContent = 'Envoyer';
