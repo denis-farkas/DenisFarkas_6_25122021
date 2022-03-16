@@ -11,7 +11,6 @@ function userFactory(data) {
     article.setAttribute('aria-label', `Fiche du photographe ${name}`);
 
     const img = document.createElement('img');
-
     img.setAttribute('src', picture);
     img.setAttribute('alt', 'portrait du photographe');
 
